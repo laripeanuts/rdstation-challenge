@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import getProducts from '../services/product.service';
 
-const useProducts = () => {
+export const useProducts = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -46,5 +46,3 @@ const useProducts = () => {
 
   return { preferences, features, products, isLoading, error };
 };
-
-export default useProducts;

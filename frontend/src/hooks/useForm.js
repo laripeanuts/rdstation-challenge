@@ -1,7 +1,7 @@
 // useForm.js
 import { useState } from 'react';
 
-const useForm = (initialState) => {
+export const useForm = (initialState) => {
   const [formData, setFormData] = useState(initialState);
 
   const handleChange = (field, value) => {
@@ -10,5 +10,3 @@ const useForm = (initialState) => {
 
   return { formData, handleChange };
 };
-
-export default useForm;

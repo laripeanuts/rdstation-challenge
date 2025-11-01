@@ -1,9 +1,7 @@
 // Form.js
 
 import React from 'react';
-import useForm from '../../hooks/useForm';
-import useProducts from '../../hooks/useProducts';
-import useRecommendations from '../../hooks/useRecommendations';
+import { useForm, useProducts, useRecommendations } from '../../hooks';
 import { validateFormData } from '../../validators';
 import { Features, Preferences, RecommendationType } from './Fields';
 import { SubmitButton } from './SubmitButton';

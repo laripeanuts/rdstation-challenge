@@ -3,7 +3,7 @@
 import { useCallback, useState } from 'react';
 import recommendationService from '../services/recommendation.service';
 
-function useRecommendations(products) {
+export function useRecommendations(products) {
   const [recommendations, setRecommendations] = useState([]);
 
   const getRecommendations = useCallback(
@@ -15,5 +15,3 @@ function useRecommendations(products) {
 
   return { recommendations, getRecommendations, setRecommendations };
 }
-
-export default useRecommendations;
