@@ -1,10 +1,9 @@
-import getProducts from './product.service';
+import { apiClient } from './apiClient.service';
+import { getProducts } from './product.service';
 
-import axios from 'axios';
-
-jest.mock('axios', () => ({
+jest.mock('./apiClient.service', () => ({
   __esModule: true,
-  default: {
+  apiClient: {
     get: jest.fn(),
   },
 }));
@@ -20,18 +19,18 @@ describe('product.service', () => {
       { id: 2, name: 'Product 2', preferences: [], features: [] },
     ];
 
-    axios.get.mockResolvedValue({ data: mockProducts });
+    apiClient.get.mockResolvedValue({ data: mockProducts });
 
     const result = await getProducts();
 
-    expect(axios.get).toHaveBeenCalledWith('http://localhost:3001/products');
-    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(apiClient.get).toHaveBeenCalledWith('/products');
+    expect(apiClient.get).toHaveBeenCalledTimes(1);
     expect(result).toEqual(mockProducts);
   });
 
   test('should handle error when fetching products fails', async () => {
     const error = new Error('Network Error');
-    axios.get.mockRejectedValue(error);
+    apiClient.get.mockRejectedValue(error);
 
     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
 
@@ -41,18 +40,18 @@ describe('product.service', () => {
       'Erro ao obter os produtos:',
       error
     );
-    expect(axios.get).toHaveBeenCalledWith('http://localhost:3001/products');
+    expect(apiClient.get).toHaveBeenCalledWith('/products');
 
     consoleErrorSpy.mockRestore();
   });
 
   test('should return empty array when API returns empty data', async () => {
-    axios.get.mockResolvedValue({ data: [] });
+    apiClient.get.mockResolvedValue({ data: [] });
 
     const result = await getProducts();
 
     expect(result).toEqual([]);
-    expect(axios.get).toHaveBeenCalledWith('http://localhost:3001/products');
+    expect(apiClient.get).toHaveBeenCalledWith('/products');
   });
 
   test('should handle API errors with custom message', async () => {
@@ -62,7 +61,7 @@ describe('product.service', () => {
         data: { message: 'Not found' },
       },
     };
-    axios.get.mockRejectedValue(error);
+    apiClient.get.mockRejectedValue(error);
 
     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
 

@@ -1,15 +1,11 @@
-import axios from 'axios';
+import { apiClient } from './apiClient.service';
 
-const baseURL = 'http://localhost:3001';
-
-const getProducts = async () => {
+export const getProducts = async () => {
   try {
-    const response = await axios.get(`${baseURL}/products`);
+    const response = await apiClient.get('/products');
     return response.data;
   } catch (error) {
     console.error('Erro ao obter os produtos:', error);
     throw error;
   }
 };
-
-export default getProducts;

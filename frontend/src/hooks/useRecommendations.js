@@ -1,7 +1,7 @@
 // useRecommendations.js
 
 import { useCallback, useState } from 'react';
-import recommendationService from '../services/recommendation.service';
+import { recommendationService } from '../services/.';
 
 export function useRecommendations(products) {
   const [recommendations, setRecommendations] = useState([]);

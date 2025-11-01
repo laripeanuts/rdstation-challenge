@@ -99,8 +99,8 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 - [x] Adicionar seleções extras para construir recomendações. Ex: Pegar apenas `N` recomendações
 - [x] Adicionar validação para o formulário
 - [x] Aumentar a cobertura de testes do projeto para pelo menos 80%
-- [ ] Analisar e garantir uma boa performance da solução
-- [ ] Criar um client do AXIOS para centralizar a configuração de requests
+- [x] Analisar e garantir uma boa performance da solução
+- [x] Criar um client do AXIOS para centralizar a configuração de requests com variáveis de ambiente
 - [ ] Criar um switch para escolha de tema, usando contextAPI para distribuir o estado que deve ser mantido no local storage
 
 ## Autor

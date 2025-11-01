@@ -1,6 +1,6 @@
-import { renderHook, act } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
+import { recommendationService } from '../services/recommendation.service';
 import { useRecommendations } from './useRecommendations';
-import recommendationService from '../services/recommendation.service';
 
 jest.mock('../services/recommendation.service');
 
@@ -59,9 +59,7 @@ describe('useRecommendations', () => {
 
     const newProducts = [{ id: 2, name: 'Product 2' }];
     rerender({ products: newProducts });
-    expect(result.current.getRecommendations).not.toBe(
-      firstGetRecommendations
-    );
+    expect(result.current.getRecommendations).not.toBe(firstGetRecommendations);
   });
 
   test('should allow setting recommendations manually', () => {
@@ -125,4 +123,3 @@ describe('useRecommendations', () => {
     expect(recommendations2).toEqual([{ id: 2, name: 'Product 2' }]);
   });
 });
-

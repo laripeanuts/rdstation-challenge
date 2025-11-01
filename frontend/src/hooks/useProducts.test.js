@@ -5,11 +5,11 @@ const mockGetProducts = jest.fn();
 
 jest.mock('../services/product.service', () => ({
   __esModule: true,
-  default: jest.fn(),
+  getProducts: jest.fn(),
 }));
 
 // eslint-disable-next-line import/first
-import getProducts from '../services/product.service';
+import { getProducts } from '../services/product.service';
 
 describe('useProducts', () => {
   beforeEach(() => {
@@ -57,10 +57,11 @@ describe('useProducts', () => {
     await waitFor(
       () => {
         expect(result.current.isLoading).toBe(false);
-        expect(result.current.products).toEqual(mockProducts);
       },
       { timeout: 3000 }
     );
+
+    expect(result.current.products).toEqual(mockProducts);
 
     expect(result.current.preferences).toEqual(['pref1', 'pref2', 'pref3']);
     expect(result.current.features).toEqual(['feat1', 'feat2', 'feat3']);
@@ -75,10 +76,11 @@ describe('useProducts', () => {
     await waitFor(
       () => {
         expect(result.current.isLoading).toBe(false);
-        expect(result.current.products).toEqual([]);
       },
       { timeout: 3000 }
     );
+
+    expect(result.current.products).toEqual([]);
 
     expect(result.current.preferences).toEqual([]);
     expect(result.current.features).toEqual([]);

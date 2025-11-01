@@ -59,6 +59,4 @@ const getRecommendations = (formData = {}, products = [], options = {}) => {
   return strategy(scoredProducts);
 };
 
-const recommendationService = { getRecommendations };
-
-export default recommendationService;
+export const recommendationService = { getRecommendations };
