@@ -78,7 +78,7 @@ Para completar este teste, você deve concentrar-se principalmente em três arqu
 - [x] Implementar a lógica de recomendação de produtos com base nas preferências do usuário.
 - [x] Utilizar React.js para o desenvolvimento do front-end.
 - [x] Consumir a API fornecida pelo json-server para obter os dados dos produtos.
-- [ ] Seguir as boas práticas de desenvolvimento e organização de código.
+- [x] Seguir as boas práticas de desenvolvimento e organização de código.
 - [ ] Implementar testes unitários para as funcionalidades desenvolvidas.
 
 ## Critérios de Aceite
@@ -93,12 +93,12 @@ Para completar este teste, você deve concentrar-se principalmente em três arqu
 
 Certifique-se de que todos os critérios de aceite são atendidos durante o desenvolvimento do projeto.
 
-## Critérios extras adicionados
+## Critérios extras propostos
 
 - [x] Adicionar estratégias extras para construir recomendações. Ex: Sistema de peso diferentes para funcionalidades e preferências
 - [x] Adicionar seleções extras para construir recomendações. Ex: Pegar apenas `N` recomendações
 - [x] Adicionar validação para o formulário
-- [ ] Aumentar a cobertura de testes
+- [x] Aumentar a cobertura de testes do projeto para pelo menos 80%
 - [ ] Analisar e garantir uma boa performance da solução
 - [ ] Criar um client do AXIOS para centralizar a configuração de requests
 - [ ] Criar um switch para escolha de tema, usando contextAPI para distribuir o estado que deve ser mantido no local storage

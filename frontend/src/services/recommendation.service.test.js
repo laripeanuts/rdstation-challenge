@@ -196,4 +196,44 @@ describe('recommendationService', () => {
 
     consoleWarnSpy.mockRestore();
   });
+
+  test('Usa valores default quando formData não tem propriedades', () => {
+    const recommendations = recommendationService.getRecommendations(
+      {},
+      mockProducts
+    );
+
+    expect(recommendations).toEqual([]);
+  });
+
+  test('Usa valores default quando products está vazio', () => {
+    const formData = {
+      selectedPreferences: ['Automação de marketing'],
+      selectedFeatures: [],
+      selectedRecommendationType: 'MultipleProducts',
+    };
+
+    const recommendations = recommendationService.getRecommendations(
+      formData,
+      []
+    );
+
+    expect(recommendations).toEqual([]);
+  });
+
+  test('Usa estratégias default quando options não é fornecido', () => {
+    const formData = {
+      selectedPreferences: ['Automação de marketing'],
+      selectedFeatures: [],
+      selectedRecommendationType: 'SingleProduct',
+    };
+
+    const recommendations = recommendationService.getRecommendations(
+      formData,
+      mockProducts
+    );
+
+    expect(recommendations).toHaveLength(1);
+    expect(recommendations[0].name).toBe('RD Station Marketing');
+  });
 });
