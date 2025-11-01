@@ -4,6 +4,7 @@ import React from 'react';
 import useForm from '../../hooks/useForm';
 import useProducts from '../../hooks/useProducts';
 import useRecommendations from '../../hooks/useRecommendations';
+import { validateFormData } from '../../validators';
 import { Features, Preferences, RecommendationType } from './Fields';
 import { SubmitButton } from './SubmitButton';
 
@@ -20,20 +21,10 @@ function Form({ onRecommend }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (
-      !formData.selectedPreferences.length &&
-      !formData.selectedFeatures.length
-    ) {
-      alert(
-        'Por favor, selecione pelo menos uma preferência ou funcionalidade para obter uma recomendação.'
-      );
-      return;
-    }
+    const validation = validateFormData(formData);
 
-    if (!formData.selectedRecommendationType) {
-      alert(
-        'Por favor, selecione um tipo de recomendação para obter uma recomendação.'
-      );
+    if (!validation.isValid) {
+      alert(validation.errors.join('\n'));
       return;
     }
 

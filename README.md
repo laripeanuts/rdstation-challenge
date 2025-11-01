@@ -95,6 +95,9 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 
 ## Critérios extras adicionados
 
+- [ ] Adicionar estratégias extras para construir recomendações. Ex: Sistema de peso diferentes para funcionalidades e preferências
+- [ ] Adicionar seleções extras para construir recomendações. Ex: Pegar apenas `N` recomendações
+- [ ] Adicionar validação para o formulário
 - [ ] Aumentar a cobertura de testes
 - [ ] Analisar e garantir uma boa performance da solução
 - [ ] Criar um client do AXIOS para centralizar a configuração de requests
