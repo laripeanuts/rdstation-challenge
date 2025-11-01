@@ -75,23 +75,30 @@ Para completar este teste, você deve concentrar-se principalmente em três arqu
 
 ## Requisitos
 
-- [ ] Implementar a lógica de recomendação de produtos com base nas preferências do usuário.
-- [ ] Utilizar React.js para o desenvolvimento do front-end.
-- [ ] Consumir a API fornecida pelo json-server para obter os dados dos produtos.
+- [x] Implementar a lógica de recomendação de produtos com base nas preferências do usuário.
+- [x] Utilizar React.js para o desenvolvimento do front-end.
+- [x] Consumir a API fornecida pelo json-server para obter os dados dos produtos.
 - [ ] Seguir as boas práticas de desenvolvimento e organização de código.
 - [ ] Implementar testes unitários para as funcionalidades desenvolvidas.
 
 ## Critérios de Aceite
 
-1. [ ] O serviço de recomendação de produtos deve ser capaz de receber as preferências e funcionalidades desejadas do usuário através de um formulário.
-2. [ ] O serviço deve retornar recomendações de produtos com base nas preferências e funcionalidades selecionadas pelo usuário.
-3. [ ] Se o tipo de recomendação selecionado for "SingleProduct", o serviço deve retornar apenas um produto que corresponda melhor às preferências e funcionalidades do usuário.
-4. [ ] Se o tipo de recomendação selecionado for "MultipleProducts", o serviço deve retornar uma lista de produtos que correspondam às preferências e funcionalidades do usuário.
-5. [ ] Em caso de empate na seleção de produtos com base nas preferências e funcionalidades do usuário, o serviço deve retornar o último produto que atende aos critérios de seleção.
-6. [ ] O serviço deve ser capaz de lidar com diferentes tipos de preferências e funcionalidades selecionadas pelo usuário.
+1. [x] O serviço de recomendação de produtos deve ser capaz de receber as preferências e funcionalidades desejadas do usuário através de um formulário.
+2. [x] O serviço deve retornar recomendações de produtos com base nas preferências e funcionalidades selecionadas pelo usuário.
+3. [x] Se o tipo de recomendação selecionado for "SingleProduct", o serviço deve retornar apenas um produto que corresponda melhor às preferências e funcionalidades do usuário.
+4. [x] Se o tipo de recomendação selecionado for "MultipleProducts", o serviço deve retornar uma lista de produtos que correspondam às preferências e funcionalidades do usuário.
+5. [x] Em caso de empate na seleção de produtos com base nas preferências e funcionalidades do usuário, o serviço deve retornar o último produto que atende aos critérios de seleção.
+6. [x] O serviço deve ser capaz de lidar com diferentes tipos de preferências e funcionalidades selecionadas pelo usuário.
 7. [ ] O serviço deve ser modular e facilmente extensível para futuras atualizações e adições de funcionalidades.
 
 Certifique-se de que todos os critérios de aceite são atendidos durante o desenvolvimento do projeto.
+
+## Critérios extras adicionados
+
+- [ ] Aumentar a cobertura de testes
+- [ ] Analisar e garantir uma boa performance da solução
+- [ ] Criar um client do AXIOS para centralizar a configuração de requests
+- [ ] Criar um switch para escolha de tema, usando contextAPI para distribuir o estado que deve ser mantido no local storage
 
 ## Autor
 

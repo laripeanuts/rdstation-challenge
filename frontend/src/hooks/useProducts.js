@@ -1,43 +1,50 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import getProducts from '../services/product.service';
 
 const useProducts = () => {
-  const [preferences, setPreferences] = useState([]);
-  const [features, setFeatures] = useState([]);
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchProducts = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      const fetchedProducts = await getProducts();
+      setProducts(fetchedProducts);
+    } catch (err) {
+      console.error('Erro ao obter os produtos:', err);
+      setError(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const { preferences, features } = useMemo(() => {
+    if (!products.length) {
+      return { preferences: [], features: [] };
+    }
+
+    const { preferences, features } = products.reduce(
+      (acc, product) => ({
+        preferences: [...new Set([...acc.preferences, ...product.preferences])],
+        features: [...new Set([...acc.features, ...product.features])],
+      }),
+      { preferences: [], features: [] }
+    );
+
+    return {
+      preferences,
+      features,
+    };
+  }, [products]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const products = await getProducts();
-        const allPreferences = [];
-        const allFeatures = [];
-
-        setProducts(products);
-
-        products.forEach((product) => {
-          const productPreferences = product.preferences
-            .sort(() => Math.random() - 0.5)
-            .slice(0, 2);
-          allPreferences.push(...productPreferences);
-
-          const productFeatures = product.features
-            .sort(() => Math.random() - 0.5)
-            .slice(0, 2);
-          allFeatures.push(...productFeatures);
-        });
-
-        setPreferences(allPreferences);
-        setFeatures(allFeatures);
-      } catch (error) {
-        console.error('Erro ao obter os produtos:', error);
-      }
-    };
-
-    fetchData();
+    fetchProducts();
   }, []);
 
-  return { preferences, features, products };
+  return { preferences, features, products, isLoading, error };
 };
 
 export default useProducts;
