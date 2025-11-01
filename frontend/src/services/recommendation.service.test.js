@@ -125,4 +125,75 @@ describe('recommendationService', () => {
 
     expect(recommendations).toHaveLength(0);
   });
+
+  test('Permite usar estratégia de scoring customizada', () => {
+    const formData = {
+      selectedPreferences: ['Automação de marketing'],
+      selectedFeatures: [],
+      selectedRecommendationType: 'MultipleProducts',
+    };
+
+    // Custom scoring strategy that always returns score of 10
+    const customScoring = () => 10;
+
+    const recommendations = recommendationService.getRecommendations(
+      formData,
+      mockProducts,
+      { scoringStrategy: customScoring }
+    );
+
+    expect(recommendations.length).toBeGreaterThan(0);
+    recommendations.forEach((product) => {
+      expect(product.score).toBe(10);
+    });
+  });
+
+  test('Permite usar estratégias de seleção customizadas', () => {
+    const formData = {
+      selectedPreferences: [
+        'Integração fácil com ferramentas de e-mail',
+        'Automação de marketing',
+      ],
+      selectedFeatures: [
+        'Rastreamento de interações com clientes',
+        'Rastreamento de comportamento do usuário',
+      ],
+      selectedRecommendationType: 'CustomStrategy',
+    };
+
+    // Custom selection strategy that returns only first 2 products
+    const customSelectionStrategies = {
+      CustomStrategy: (products) => products.slice(0, 2),
+    };
+
+    const recommendations = recommendationService.getRecommendations(
+      formData,
+      mockProducts,
+      { selectionStrategies: customSelectionStrategies }
+    );
+
+    expect(recommendations).toHaveLength(2);
+  });
+
+  test('Retorna warning e todos os produtos para tipo de recomendação desconhecido', () => {
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation();
+
+    const formData = {
+      selectedPreferences: ['Automação de marketing'],
+      selectedFeatures: [],
+      selectedRecommendationType: 'UnknownType',
+    };
+
+    const recommendations = recommendationService.getRecommendations(
+      formData,
+      mockProducts
+    );
+
+    expect(consoleWarnSpy).toHaveBeenCalledWith(
+      expect.stringContaining('Unknown recommendation type: UnknownType')
+    );
+    expect(recommendations.length).toBeGreaterThan(0);
+
+    consoleWarnSpy.mockRestore();
+  });
 });

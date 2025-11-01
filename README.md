@@ -89,15 +89,15 @@ Para completar este teste, você deve concentrar-se principalmente em três arqu
 4. [x] Se o tipo de recomendação selecionado for "MultipleProducts", o serviço deve retornar uma lista de produtos que correspondam às preferências e funcionalidades do usuário.
 5. [x] Em caso de empate na seleção de produtos com base nas preferências e funcionalidades do usuário, o serviço deve retornar o último produto que atende aos critérios de seleção.
 6. [x] O serviço deve ser capaz de lidar com diferentes tipos de preferências e funcionalidades selecionadas pelo usuário.
-7. [ ] O serviço deve ser modular e facilmente extensível para futuras atualizações e adições de funcionalidades.
+7. [x] O serviço deve ser modular e facilmente extensível para futuras atualizações e adições de funcionalidades.
 
 Certifique-se de que todos os critérios de aceite são atendidos durante o desenvolvimento do projeto.
 
 ## Critérios extras adicionados
 
-- [ ] Adicionar estratégias extras para construir recomendações. Ex: Sistema de peso diferentes para funcionalidades e preferências
-- [ ] Adicionar seleções extras para construir recomendações. Ex: Pegar apenas `N` recomendações
-- [ ] Adicionar validação para o formulário
+- [x] Adicionar estratégias extras para construir recomendações. Ex: Sistema de peso diferentes para funcionalidades e preferências
+- [x] Adicionar seleções extras para construir recomendações. Ex: Pegar apenas `N` recomendações
+- [x] Adicionar validação para o formulário
 - [ ] Aumentar a cobertura de testes
 - [ ] Analisar e garantir uma boa performance da solução
 - [ ] Criar um client do AXIOS para centralizar a configuração de requests
