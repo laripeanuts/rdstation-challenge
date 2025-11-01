@@ -59,6 +59,306 @@
         "Recomendação de ações com base em padrões",
         "Integração de funcionalidades preditivas nos produtos RD Station"
       ]
+    },
+    {
+      "id": 5,
+      "name": "RD Analytics",
+      "category": "Análise de Dados",
+      "preferences": [
+        "Dashboards personalizáveis",
+        "Relatórios de performance em tempo real",
+        "Exportação de métricas para BI"
+      ],
+      "features": [
+        "Visualização interativa de dados",
+        "Consolidação de dados multicanal",
+        "Integração com Google Analytics e Data Studio"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "RD Social",
+      "category": "Marketing",
+      "preferences": [
+        "Gestão de múltiplas redes sociais",
+        "Agendamento de postagens",
+        "Análise de engajamento"
+      ],
+      "features": [
+        "Publicação automática em diferentes plataformas",
+        "Monitoramento de hashtags e menções",
+        "Relatórios de desempenho por canal"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "RD Leads Intelligence",
+      "category": "Vendas",
+      "preferences": [
+        "Geração automatizada de leads",
+        "Qualificação de leads por comportamento",
+        "Identificação de oportunidades de upsell"
+      ],
+      "features": [
+        "Monitoramento de comportamento de compra",
+        "Classificação automática de leads",
+        "Integração com CRM para follow-up"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "RD Email Designer",
+      "category": "Marketing",
+      "preferences": [
+        "Criação de templates responsivos",
+        "Editor drag-and-drop",
+        "Testes de renderização por dispositivo"
+      ],
+      "features": [
+        "Pré-visualização de e-mails",
+        "Personalização por tags dinâmicas",
+        "Integração com RD Marketing"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "RD Chatbot Studio",
+      "category": "Omnichannel",
+      "preferences": [
+        "Criação de fluxos de chatbot sem código",
+        "Integração com WhatsApp e Messenger",
+        "Análise de satisfação do usuário"
+      ],
+      "features": [
+        "Editor visual de fluxos conversacionais",
+        "Treinamento com IA para respostas contextuais",
+        "Monitoramento de desempenho dos bots"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "RD Sales Forecast",
+      "category": "Vendas",
+      "preferences": [
+        "Previsão de receita baseada em histórico",
+        "Análise preditiva de metas",
+        "Simulação de cenários de vendas"
+      ],
+      "features": [
+        "Projeção automática de pipeline",
+        "Alertas de risco de perda de negócios",
+        "Integração com RD CRM e Analytics"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "RD Growth Hub",
+      "category": "Crescimento",
+      "preferences": [
+        "Planejamento de campanhas de growth",
+        "Testes A/B integrados",
+        "Insights de otimização"
+      ],
+      "features": [
+        "Criação de hipóteses de crescimento",
+        "Gestão de experimentos e resultados",
+        "Integração com RD Marketing"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "RD Customer Success",
+      "category": "Sucesso do Cliente",
+      "preferences": [
+        "Gestão de churn",
+        "Acompanhamento da saúde do cliente",
+        "Alertas de risco de cancelamento"
+      ],
+      "features": [
+        "Métricas de engajamento do cliente",
+        "Gestão de planos de ação para retenção",
+        "Automação de check-ins de sucesso"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "RD Academy",
+      "category": "Educação e Treinamento",
+      "preferences": [
+        "Capacitação da equipe de vendas",
+        "Certificações de marketing digital",
+        "Aprendizado gamificado"
+      ],
+      "features": [
+        "Plataforma de cursos online",
+        "Trilhas de aprendizado personalizadas",
+        "Certificados integrados com o perfil do usuário"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "RD Integrator",
+      "category": "Integrações",
+      "preferences": [
+        "Conexão com APIs externas",
+        "Integração com ERPs e CRMs de terceiros",
+        "Sincronização de dados em tempo real"
+      ],
+      "features": [
+        "Gestor visual de integrações",
+        "Webhooks customizáveis",
+        "Logs detalhados de eventos"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "RD Landing Builder",
+      "category": "Marketing",
+      "preferences": [
+        "Criação rápida de landing pages",
+        "Templates otimizados para conversão",
+        "Editor visual de arrastar e soltar"
+      ],
+      "features": [
+        "Formulários integrados com RD Marketing",
+        "Testes A/B de páginas",
+        "Relatórios de conversão por origem"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "RD Ads Manager",
+      "category": "Marketing",
+      "preferences": [
+        "Gestão de campanhas pagas em um só lugar",
+        "Otimização automática de orçamento",
+        "Relatórios de ROI unificados"
+      ],
+      "features": [
+        "Integração com Meta Ads e Google Ads",
+        "Sugestão automática de públicos",
+        "Acompanhamento de métricas em tempo real"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "RD Pipeline Visualizer",
+      "category": "Vendas",
+      "preferences": [
+        "Visualização completa do funil de vendas",
+        "Atualização em tempo real de negociações",
+        "Customização de etapas do pipeline"
+      ],
+      "features": [
+        "Drag-and-drop de oportunidades",
+        "Alertas de estagnação de negócios",
+        "Integração com CRM e Analytics"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "RD Insight Hub",
+      "category": "Análise de Dados",
+      "preferences": [
+        "Centralização de dados estratégicos",
+        "Painéis executivos automatizados",
+        "Análise comparativa de períodos"
+      ],
+      "features": [
+        "Geração automática de relatórios PDF",
+        "Exportação para planilhas",
+        "API para dados analíticos"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "RD Automation Studio",
+      "category": "Automação",
+      "preferences": [
+        "Criação de fluxos de automação visualmente",
+        "Condições personalizadas de entrada",
+        "Disparo automatizado de campanhas"
+      ],
+      "features": [
+        "Editor visual de automação",
+        "Gatilhos e ações personalizáveis",
+        "Logs de execução de automações"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "RD Feedback Loop",
+      "category": "Sucesso do Cliente",
+      "preferences": [
+        "Coleta automatizada de feedbacks",
+        "Análise de NPS",
+        "Relatórios de satisfação por produto"
+      ],
+      "features": [
+        "Formulários de pesquisa integrados",
+        "Relatórios em tempo real",
+        "Integração com RD CRM e CS"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "RD Event Manager",
+      "category": "Marketing",
+      "preferences": [
+        "Gestão de eventos e webinars",
+        "Automação de inscrições",
+        "Envio de lembretes personalizados"
+      ],
+      "features": [
+        "Landing pages de inscrição",
+        "Integração com plataformas de streaming",
+        "Relatórios de participação"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "RD Partner Hub",
+      "category": "Parcerias",
+      "preferences": [
+        "Gestão de parcerias comerciais",
+        "Métricas de co-marketing",
+        "Onboarding de parceiros"
+      ],
+      "features": [
+        "Portal de parceiros personalizado",
+        "Relatórios de performance conjunta",
+        "Integração com CRM e Marketing"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "RD Notification Center",
+      "category": "Comunicação",
+      "preferences": [
+        "Alertas centralizados por canal",
+        "Notificações push personalizadas",
+        "Gerenciamento de preferências do usuário"
+      ],
+      "features": [
+        "Painel de alertas configurável",
+        "Envio segmentado por grupo",
+        "Logs de entregas de notificações"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "RD Data Sync",
+      "category": "Integrações",
+      "preferences": [
+        "Sincronização bidirecional de dados",
+        "Mapeamento de campos entre sistemas",
+        "Controle de versões de dados"
+      ],
+      "features": [
+        "Agendamento de sincronizações",
+        "Detecção de conflitos de dados",
+        "Logs de auditoria detalhados"
+      ]
     }
   ]
 }
