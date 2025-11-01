@@ -1,0 +1,6 @@
+node_modules/
+.cursor/
+.env
+
+# Remove all DS Store files
+.DS_Store
