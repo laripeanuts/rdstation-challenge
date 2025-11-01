@@ -101,6 +101,7 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 - [x] Aumentar a cobertura de testes do projeto para pelo menos 80%
 - [x] Analisar e garantir uma boa performance da solução
 - [x] Criar um client do AXIOS para centralizar a configuração de requests com variáveis de ambiente
+- [x] Melhorar estrutura de pastas e organização
 - [ ] Criar um switch para escolha de tema, usando contextAPI para distribuir o estado que deve ser mantido no local storage
 
 ## Autor

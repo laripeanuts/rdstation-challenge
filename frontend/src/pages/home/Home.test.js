@@ -1,17 +1,15 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import App from './App';
+import { HomePage } from './Home.page';
 
-jest.mock('./components/Form/Form', () => ({
+jest.mock('../../components/Form/Form', () => ({
   __esModule: true,
   default: function MockForm({ onRecommend }) {
     return (
       <div data-testid="mock-form">
         <button
           onClick={() =>
-            onRecommend([
-              { id: 1, name: 'Test Product', category: 'Test' },
-            ])
+            onRecommend([{ id: 1, name: 'Test Product', category: 'Test' }])
           }
         >
           Get Recommendations
@@ -21,7 +19,7 @@ jest.mock('./components/Form/Form', () => ({
   },
 }));
 
-jest.mock('./components/RecommendationList/RecommendationList', () => ({
+jest.mock('../../components/RecommendationList/RecommendationList', () => ({
   __esModule: true,
   default: function MockRecommendationList({ recommendations }) {
     return (
@@ -37,7 +35,7 @@ jest.mock('./components/RecommendationList/RecommendationList', () => ({
 
 describe('App', () => {
   test('should render title', () => {
-    render(<App />);
+    render(<HomePage />);
 
     expect(
       screen.getByText('Recomendador de Produtos RD Station')
@@ -45,19 +43,19 @@ describe('App', () => {
   });
 
   test('should render form component', () => {
-    render(<App />);
+    render(<HomePage />);
 
     expect(screen.getByTestId('mock-form')).toBeInTheDocument();
   });
 
   test('should render recommendation list', () => {
-    render(<App />);
+    render(<HomePage />);
 
     expect(screen.getByText('Lista de Recomendações:')).toBeInTheDocument();
   });
 
   test('should update recommendations when form submits', () => {
-    render(<App />);
+    render(<HomePage />);
 
     const button = screen.getByText('Get Recommendations');
     fireEvent.click(button);
@@ -65,4 +63,3 @@ describe('App', () => {
     expect(screen.getByText('Test Product')).toBeInTheDocument();
   });
 });
-
