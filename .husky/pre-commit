@@ -7,21 +7,16 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 staged_files=$(git diff --cached --name-only --diff-filter=ACM | grep -E '^frontend/' || true)
 
 if [ -n "$staged_files" ]; then
-  echo "🔍 Executando lint nos arquivos do frontend..."
-
-  # Verifica se yarn está disponível
-  if ! command -v yarn >/dev/null 2>&1; then
-    echo "❌ Erro: yarn não encontrado no PATH"
-    exit 1
-  fi
-
-  # Executa o lint e captura o código de saída
-  if yarn --cwd frontend lint --max-warnings 0; then
-    echo "✅ Lint passou com sucesso!"
-  else
+  echo "🔍 Executando lint-staged nos arquivos do frontend..."
+  
+  # Executa lint-staged que irá fazer lint apenas nos arquivos staged
+  yarn lint-staged
+  
+  if [ $? -ne 0 ]; then
     echo ""
     echo "❌ Lint falhou! Por favor, corrija os erros antes de commitar."
-    echo "💡 Você pode executar 'yarn --cwd frontend lint:fix' para corrigir automaticamente alguns erros."
     exit 1
   fi
+  
+  echo "✅ Lint passou com sucesso!"
 fi
