@@ -14,8 +14,8 @@ describe('RecommendationType', () => {
       <RecommendationType selectedRecommendationType="" onChange={mockOnChange} />
     );
 
-    expect(screen.getByText('Produto Único')).toBeInTheDocument();
-    expect(screen.getByText('Múltiplos Produtos')).toBeInTheDocument();
+    expect(screen.getByText('Produto Único (melhor match)')).toBeInTheDocument();
+    expect(screen.getByText('Múltiplos Produtos (todos os matches)')).toBeInTheDocument();
   });
 
   test('should call onRecommendationTypeChange with SingleProduct when first option is clicked', () => {

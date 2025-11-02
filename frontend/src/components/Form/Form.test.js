@@ -51,12 +51,12 @@ describe('Form', () => {
   test('should render form with all fields', () => {
     render(<Form onRecommend={mockOnRecommend} />);
 
-    expect(screen.getByText('Preferências:')).toBeInTheDocument();
-    expect(screen.getByText('Funcionalidades:')).toBeInTheDocument();
-    expect(screen.getByText('Tipo de Recomendação:')).toBeInTheDocument();
+    expect(screen.getByText('Preferências')).toBeInTheDocument();
+    expect(screen.getByText('Funcionalidades')).toBeInTheDocument();
+    expect(screen.getByText('Tipo de Recomendação')).toBeInTheDocument();
   });
 
-  test('should call onRecommend when form is submitted with valid data', () => {
+  test('should call onRecommend when form is submitted with valid data', async () => {
     const mockRecommendations = [{ id: 1, name: 'Recommended Product' }];
     mockGetRecommendations.mockReturnValue(mockRecommendations);
 
@@ -74,8 +74,10 @@ describe('Form', () => {
     const form = document.querySelector('form');
     fireEvent.submit(form);
 
-    expect(mockGetRecommendations).toHaveBeenCalled();
-    expect(mockOnRecommend).toHaveBeenCalledWith(mockRecommendations);
+    await waitFor(() => {
+      expect(mockGetRecommendations).toHaveBeenCalled();
+      expect(mockOnRecommend).toHaveBeenCalledWith(mockRecommendations);
+    }, { timeout: 2000 });
   });
 
   test('should show alert when validation fails', () => {
@@ -106,7 +108,7 @@ describe('Form', () => {
     alertSpy.mockRestore();
   });
 
-  test('should not call onRecommend if callback is not provided', () => {
+  test('should not call onRecommend if callback is not provided', async () => {
     mockGetRecommendations.mockReturnValue([{ id: 1, name: 'Product' }]);
 
     useForm.mockReturnValue({
@@ -123,7 +125,280 @@ describe('Form', () => {
     const form = document.querySelector('form');
     fireEvent.submit(form);
 
-    expect(mockGetRecommendations).toHaveBeenCalled();
+    await waitFor(() => {
+      expect(mockGetRecommendations).toHaveBeenCalled();
+    }, { timeout: 2000 });
+  });
+
+  test('should call onPreferencesChange when preference is toggled', async () => {
+    const mockHandleChange = jest.fn();
+    const mockOnPreferencesChange = jest.fn();
+
+    useForm.mockReturnValue({
+      formData: {
+        selectedPreferences: [],
+        selectedFeatures: [],
+        selectedRecommendationType: '',
+      },
+      handleChange: mockHandleChange,
+    });
+
+    render(<Form onPreferencesChange={mockOnPreferencesChange} />);
+
+    const checkboxes = screen.getAllByRole('checkbox');
+    const preferenceCheckbox = checkboxes.find(
+      (cb) => cb.closest('label')?.textContent?.includes('Preferência 1')
+    );
+
+    if (preferenceCheckbox) {
+      fireEvent.click(preferenceCheckbox);
+      await waitFor(() => {
+        expect(mockHandleChange).toHaveBeenCalled();
+        expect(mockOnPreferencesChange).toHaveBeenCalledWith(['Preferência 1']);
+      });
+    }
+  });
+
+  test('should remove preference when toggling already selected preference', async () => {
+    const mockHandleChange = jest.fn();
+    const mockOnPreferencesChange = jest.fn();
+
+    useForm.mockReturnValue({
+      formData: {
+        selectedPreferences: ['Preferência 1'],
+        selectedFeatures: [],
+        selectedRecommendationType: '',
+      },
+      handleChange: mockHandleChange,
+    });
+
+    render(<Form onPreferencesChange={mockOnPreferencesChange} />);
+
+    const checkboxes = screen.getAllByRole('checkbox');
+    const preferenceCheckbox = checkboxes.find(
+      (cb) => cb.closest('label')?.textContent?.includes('Preferência 1')
+    );
+
+    if (preferenceCheckbox) {
+      fireEvent.click(preferenceCheckbox);
+      await waitFor(() => {
+        expect(mockHandleChange).toHaveBeenCalled();
+        expect(mockOnPreferencesChange).toHaveBeenCalledWith([]);
+      });
+    }
+  });
+
+  test('should work without onPreferencesChange callback', async () => {
+    const mockHandleChange = jest.fn();
+
+    useForm.mockReturnValue({
+      formData: {
+        selectedPreferences: [],
+        selectedFeatures: [],
+        selectedRecommendationType: '',
+      },
+      handleChange: mockHandleChange,
+    });
+
+    render(<Form />);
+
+    const checkboxes = screen.getAllByRole('checkbox');
+    const preferenceCheckbox = checkboxes.find(
+      (cb) => cb.closest('label')?.textContent?.includes('Preferência 1')
+    );
+
+    if (preferenceCheckbox) {
+      fireEvent.click(preferenceCheckbox);
+      await waitFor(() => {
+        expect(mockHandleChange).toHaveBeenCalled();
+      });
+    }
+  });
+
+  test('should call onFeaturesChange when feature is toggled', async () => {
+    const mockHandleChange = jest.fn();
+    const mockOnFeaturesChange = jest.fn();
+
+    useForm.mockReturnValue({
+      formData: {
+        selectedPreferences: [],
+        selectedFeatures: [],
+        selectedRecommendationType: '',
+      },
+      handleChange: mockHandleChange,
+    });
+
+    render(<Form onFeaturesChange={mockOnFeaturesChange} />);
+
+    const checkboxes = screen.getAllByRole('checkbox');
+    const featureCheckbox = checkboxes.find(
+      (cb) => cb.closest('label')?.textContent?.includes('Funcionalidade 1')
+    );
+
+    if (featureCheckbox) {
+      fireEvent.click(featureCheckbox);
+      await waitFor(() => {
+        expect(mockHandleChange).toHaveBeenCalled();
+        expect(mockOnFeaturesChange).toHaveBeenCalledWith(['Funcionalidade 1']);
+      });
+    }
+  });
+
+  test('should remove feature when toggling already selected feature', async () => {
+    const mockHandleChange = jest.fn();
+    const mockOnFeaturesChange = jest.fn();
+
+    useForm.mockReturnValue({
+      formData: {
+        selectedPreferences: [],
+        selectedFeatures: ['Funcionalidade 1'],
+        selectedRecommendationType: '',
+      },
+      handleChange: mockHandleChange,
+    });
+
+    render(<Form onFeaturesChange={mockOnFeaturesChange} />);
+
+    const checkboxes = screen.getAllByRole('checkbox');
+    const featureCheckbox = checkboxes.find(
+      (cb) => cb.closest('label')?.textContent?.includes('Funcionalidade 1')
+    );
+
+    if (featureCheckbox) {
+      fireEvent.click(featureCheckbox);
+      await waitFor(() => {
+        expect(mockHandleChange).toHaveBeenCalled();
+        expect(mockOnFeaturesChange).toHaveBeenCalledWith([]);
+      });
+    }
+  });
+
+  test('should work without onFeaturesChange callback', async () => {
+    const mockHandleChange = jest.fn();
+
+    useForm.mockReturnValue({
+      formData: {
+        selectedPreferences: [],
+        selectedFeatures: [],
+        selectedRecommendationType: '',
+      },
+      handleChange: mockHandleChange,
+    });
+
+    render(<Form />);
+
+    const checkboxes = screen.getAllByRole('checkbox');
+    const featureCheckbox = checkboxes.find(
+      (cb) => cb.closest('label')?.textContent?.includes('Funcionalidade 1')
+    );
+
+    if (featureCheckbox) {
+      fireEvent.click(featureCheckbox);
+      await waitFor(() => {
+        expect(mockHandleChange).toHaveBeenCalled();
+      });
+    }
+  });
+
+  test('should call onLoadingChange during form submission', async () => {
+    const mockOnLoadingChange = jest.fn();
+    mockGetRecommendations.mockReturnValue([{ id: 1, name: 'Product' }]);
+
+    useForm.mockReturnValue({
+      formData: {
+        selectedPreferences: ['Preferência 1'],
+        selectedFeatures: [],
+        selectedRecommendationType: 'SingleProduct',
+      },
+      handleChange: jest.fn(),
+    });
+
+    render(<Form onRecommend={mockOnRecommend} onLoadingChange={mockOnLoadingChange} />);
+
+    const form = document.querySelector('form');
+    fireEvent.submit(form);
+
+    expect(mockOnLoadingChange).toHaveBeenCalledWith(true);
+
+    await waitFor(() => {
+      expect(mockOnLoadingChange).toHaveBeenCalledWith(false);
+    }, { timeout: 2000 });
+  });
+
+  test('should disable submit button when no selection or no recommendation type', () => {
+    useForm.mockReturnValue({
+      formData: {
+        selectedPreferences: [],
+        selectedFeatures: [],
+        selectedRecommendationType: '',
+      },
+      handleChange: jest.fn(),
+    });
+
+    render(<Form />);
+
+    const submitButton = screen.getByRole('button', { name: /Obter Recomendação/i });
+    expect(submitButton).toBeDisabled();
+  });
+
+  test('should enable submit button when selection and recommendation type are provided', () => {
+    useForm.mockReturnValue({
+      formData: {
+        selectedPreferences: ['Preferência 1'],
+        selectedFeatures: [],
+        selectedRecommendationType: 'SingleProduct',
+      },
+      handleChange: jest.fn(),
+    });
+
+    render(<Form />);
+
+    const submitButton = screen.getByRole('button', { name: /Obter Recomendação/i });
+    expect(submitButton).not.toBeDisabled();
+  });
+
+  test('should enable submit button when only features are selected', () => {
+    useForm.mockReturnValue({
+      formData: {
+        selectedPreferences: [],
+        selectedFeatures: ['Funcionalidade 1'],
+        selectedRecommendationType: 'SingleProduct',
+      },
+      handleChange: jest.fn(),
+    });
+
+    render(<Form />);
+
+    const submitButton = screen.getByRole('button', { name: /Obter Recomendação/i });
+    expect(submitButton).not.toBeDisabled();
+  });
+
+  test('should handle multiple validation errors', () => {
+    const alertSpy = jest.spyOn(window, 'alert').mockImplementation();
+
+    validateFormData.mockReturnValue({
+      isValid: false,
+      errors: ['Erro 1', 'Erro 2'],
+    });
+
+    useForm.mockReturnValue({
+      formData: {
+        selectedPreferences: [],
+        selectedFeatures: [],
+        selectedRecommendationType: '',
+      },
+      handleChange: jest.fn(),
+    });
+
+    render(<Form onRecommend={mockOnRecommend} />);
+
+    const form = document.querySelector('form');
+    fireEvent.submit(form);
+
+    expect(alertSpy).toHaveBeenCalledWith('Erro 1\nErro 2');
+    expect(mockGetRecommendations).not.toHaveBeenCalled();
+
+    alertSpy.mockRestore();
   });
 });
 

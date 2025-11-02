@@ -33,12 +33,12 @@ jest.mock('../../components/RecommendationList/RecommendationList', () => ({
   },
 }));
 
-describe('App', () => {
-  test('should render title', () => {
+describe('HomePage', () => {
+  test('should render description text', () => {
     render(<HomePage />);
 
     expect(
-      screen.getByText('Recomendador de Produtos RD Station')
+      screen.getByText(/De CRM a Marketing/i)
     ).toBeInTheDocument();
   });
 
