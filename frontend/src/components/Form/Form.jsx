@@ -1,6 +1,6 @@
 // Form.js
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import { useForm, useProducts, useRecommendations } from "../../hooks";
 import { validateFormData } from "../../validators";
@@ -16,13 +16,6 @@ function Form({ onRecommend, onLoadingChange }) {
     selectedRecommendationType: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-
-  const hasAnySelection = useMemo(
-    () =>
-      formData.selectedPreferences.length > 0 ||
-      formData.selectedFeatures.length > 0,
-    [formData.selectedPreferences, formData.selectedFeatures]
-  );
 
   const handleTogglePreference = (preference) => {
     const current = formData.selectedPreferences;
