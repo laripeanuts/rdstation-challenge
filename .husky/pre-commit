@@ -8,15 +8,15 @@ staged_files=$(git diff --cached --name-only --diff-filter=ACM | grep -E '^front
 
 if [ -n "$staged_files" ]; then
   echo "🔍 Executando lint-staged nos arquivos do frontend..."
-  
+
   # Executa lint-staged que irá fazer lint apenas nos arquivos staged
   yarn lint-staged
-  
+
   if [ $? -ne 0 ]; then
     echo ""
     echo "❌ Lint falhou! Por favor, corrija os erros antes de commitar."
     exit 1
   fi
-  
+
   echo "✅ Lint passou com sucesso!"
 fi
