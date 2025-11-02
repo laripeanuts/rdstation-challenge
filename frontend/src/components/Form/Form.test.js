@@ -67,10 +67,10 @@ describe('Form', () => {
       handleChange: jest.fn(),
     });
 
-    const { container } = render(<Form onRecommend={mockOnRecommend} />);
+    render(<Form onRecommend={mockOnRecommend} />);
 
-    const form = container.querySelector('form');
-    fireEvent.submit(form);
+    const submitButton = screen.getByRole('button', { name: /Obter Recomendação/i });
+    fireEvent.click(submitButton);
 
     await waitFor(
       () => {
@@ -87,6 +87,7 @@ describe('Form', () => {
   });
 
   test('should show alert when validation fails', () => {
+    // eslint-disable-next-line no-undef
     const alertSpy = jest.spyOn(globalThis, 'alert').mockImplementation();
 
     validateFormData.mockReturnValue({
@@ -103,10 +104,10 @@ describe('Form', () => {
       handleChange: jest.fn(),
     });
 
-    const { container } = render(<Form onRecommend={mockOnRecommend} />);
+    render(<Form onRecommend={mockOnRecommend} />);
 
-    const form = container.querySelector('form');
-    fireEvent.submit(form);
+    const submitButton = screen.getByRole('button', { name: /Obter Recomendação/i });
+    fireEvent.click(submitButton);
 
     expect(alertSpy).toHaveBeenCalledWith('Erro de validação');
     expect(mockGetRecommendations).not.toHaveBeenCalled();
@@ -126,10 +127,10 @@ describe('Form', () => {
       handleChange: jest.fn(),
     });
 
-    const { container } = render(<Form />);
+    render(<Form />);
 
-    const form = container.querySelector('form');
-    fireEvent.submit(form);
+    const submitButton = screen.getByRole('button', { name: /Obter Recomendação/i });
+    fireEvent.click(submitButton);
 
     await waitFor(
       () => {
@@ -244,15 +245,15 @@ describe('Form', () => {
       handleChange: jest.fn(),
     });
 
-    const { container } = render(
+    render(
       <Form
         onRecommend={mockOnRecommend}
         onLoadingChange={mockOnLoadingChange}
       />
     );
 
-    const form = container.querySelector('form');
-    fireEvent.submit(form);
+    const submitButton = screen.getByRole('button', { name: /Obter Recomendação/i });
+    fireEvent.click(submitButton);
 
     expect(mockOnLoadingChange).toHaveBeenCalledWith(true);
 
@@ -276,15 +277,14 @@ describe('Form', () => {
       handleChange: jest.fn(),
     });
 
-    const { container } = render(<Form />);
+    render(<Form />);
 
     const submitButton = screen.getByRole('button', {
       name: /Obter Recomendação/i,
     });
     expect(submitButton).not.toBeDisabled();
 
-    const form = container.querySelector('form');
-    fireEvent.submit(form);
+    fireEvent.click(submitButton);
 
     await waitFor(() => {
       expect(submitButton).toBeDisabled();
@@ -317,6 +317,7 @@ describe('Form', () => {
   });
 
   test('should handle multiple validation errors', () => {
+    // eslint-disable-next-line no-undef
     const alertSpy = jest.spyOn(globalThis, 'alert').mockImplementation();
 
     validateFormData.mockReturnValue({
@@ -333,10 +334,10 @@ describe('Form', () => {
       handleChange: jest.fn(),
     });
 
-    const { container } = render(<Form onRecommend={mockOnRecommend} />);
+    render(<Form onRecommend={mockOnRecommend} />);
 
-    const form = container.querySelector('form');
-    fireEvent.submit(form);
+    const submitButton = screen.getByRole('button', { name: /Obter Recomendação/i });
+    fireEvent.click(submitButton);
 
     expect(alertSpy).toHaveBeenCalledWith('Erro 1\nErro 2');
     expect(mockGetRecommendations).not.toHaveBeenCalled();
