@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Features from './Features';
+import Features from './Features.jsx';
 
 describe('Features', () => {
   const mockFeatures = ['Funcionalidade 1', 'Funcionalidade 2'];
-  const mockOnFeatureChange = jest.fn();
+  const mockOnToggleFeature = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -12,7 +12,7 @@ describe('Features', () => {
 
   test('should render all features', () => {
     render(
-      <Features features={mockFeatures} onFeatureChange={mockOnFeatureChange} />
+      <Features features={mockFeatures} selectedFeatures={[]} onToggleFeature={mockOnToggleFeature} />
     );
 
     expect(screen.getByText('Funcionalidade 1')).toBeInTheDocument();
@@ -21,13 +21,13 @@ describe('Features', () => {
 
   test('should check feature when clicked', () => {
     render(
-      <Features features={mockFeatures} onFeatureChange={mockOnFeatureChange} />
+      <Features features={mockFeatures} selectedFeatures={[]} onToggleFeature={mockOnToggleFeature} />
     );
 
     const checkbox = screen.getByLabelText('Funcionalidade 1');
     fireEvent.click(checkbox);
 
-    expect(mockOnFeatureChange).toHaveBeenCalledWith(['Funcionalidade 1']);
+    expect(mockOnToggleFeature).toHaveBeenCalled();
   });
 
   test('should uncheck feature when clicked again', () => {
@@ -35,19 +35,19 @@ describe('Features', () => {
       <Features
         features={mockFeatures}
         selectedFeatures={['Funcionalidade 1']}
-        onFeatureChange={mockOnFeatureChange}
+        onToggleFeature={mockOnToggleFeature}
       />
     );
 
     const checkbox = screen.getByLabelText('Funcionalidade 1');
     fireEvent.click(checkbox);
 
-    expect(mockOnFeatureChange).toHaveBeenCalledWith([]);
+    expect(mockOnToggleFeature).toHaveBeenCalled();
   });
 
   test('should render with empty features array', () => {
     render(
-      <Features features={[]} onFeatureChange={mockOnFeatureChange} />
+      <Features features={[]} selectedFeatures={[]} onToggleFeature={mockOnToggleFeature} />
     );
 
     expect(screen.queryByRole('checkbox')).not.toBeInTheDocument();

@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       colors: {
         background: 'var(--background)',
+        'background-secondary': 'var(--background-secondary)',
         foreground: 'var(--foreground)',
         card: {
           DEFAULT: 'var(--card)',
@@ -46,6 +47,13 @@ module.exports = {
           5: 'var(--chart-5)',
         },
         'rd-primary': 'var(--primary)',
+        'rd-secondary': 'rgb(var(--rd-secondary))',
+        'rd-accent': 'rgb(var(--rd-accent))',
+        'category-sales': 'rgb(var(--category-sales))',
+        'category-marketing': 'rgb(var(--category-marketing))',
+        'category-omnichannel': 'rgb(var(--category-omnichannel))',
+        'category-ai': 'rgb(var(--category-ai))',
+        'category-data': 'rgb(var(--category-data))',
       },
       borderRadius: {
         lg: 'var(--radius)',

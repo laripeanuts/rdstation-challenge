@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import RecommendationType from './RecommendationType';
+import RecommendationType from './RecommendationType.jsx';
 
 describe('RecommendationType', () => {
-  const mockOnRecommendationTypeChange = jest.fn();
+  const mockOnChange = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -11,9 +11,7 @@ describe('RecommendationType', () => {
 
   test('should render both radio options', () => {
     render(
-      <RecommendationType
-        onRecommendationTypeChange={mockOnRecommendationTypeChange}
-      />
+      <RecommendationType selectedRecommendationType="" onChange={mockOnChange} />
     );
 
     expect(screen.getByText('Produto Único')).toBeInTheDocument();
@@ -22,32 +20,24 @@ describe('RecommendationType', () => {
 
   test('should call onRecommendationTypeChange with SingleProduct when first option is clicked', () => {
     render(
-      <RecommendationType
-        onRecommendationTypeChange={mockOnRecommendationTypeChange}
-      />
+      <RecommendationType selectedRecommendationType="" onChange={mockOnChange} />
     );
 
     const radioButtons = screen.getAllByRole('radio');
     fireEvent.click(radioButtons[0]);
 
-    expect(mockOnRecommendationTypeChange).toHaveBeenCalledWith(
-      'SingleProduct'
-    );
+    expect(mockOnChange).toHaveBeenCalledWith('SingleProduct');
   });
 
   test('should call onRecommendationTypeChange with MultipleProducts when second option is clicked', () => {
     render(
-      <RecommendationType
-        onRecommendationTypeChange={mockOnRecommendationTypeChange}
-      />
+      <RecommendationType selectedRecommendationType="" onChange={mockOnChange} />
     );
 
     const radioButtons = screen.getAllByRole('radio');
     fireEvent.click(radioButtons[1]);
 
-    expect(mockOnRecommendationTypeChange).toHaveBeenCalledWith(
-      'MultipleProducts'
-    );
+    expect(mockOnChange).toHaveBeenCalledWith('MultipleProducts');
   });
 });
 

@@ -10,8 +10,6 @@ export const Header = () => {
     <header className="border-b border-border bg-card ">
       <div className="container flex items-center justify-between px-4 py-6 mx-auto max-w-7xl">
         <div className="flex items-center gap-3">
-          {/* div if theme is dark, add a border-l border-border */}
-
           <div
             className={cn(
               "py-2 px-4 rounded-2xl",
@@ -31,7 +29,7 @@ export const Header = () => {
           size="icon"
           type="button"
           onClick={toggleTheme}
-          className="bg-transparent rounded-full cursor-pointer hover:bg-foreground hover:text-background"
+          className="rounded-full cursor-pointer bg-background-secondary hover:bg-foreground hover:text-background"
           aria-label={
             theme === "light"
               ? "Alternar para tema escuro"

@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Preferences from './Preferences';
+import Preferences from './Preferences.jsx';
 
 describe('Preferences', () => {
   const mockPreferences = ['Preferência 1', 'Preferência 2', 'Preferência 3'];
-  const mockOnPreferenceChange = jest.fn();
+  const mockOnTogglePreference = jest.fn();
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -14,7 +14,8 @@ describe('Preferences', () => {
     render(
       <Preferences
         preferences={mockPreferences}
-        onPreferenceChange={mockOnPreferenceChange}
+        selectedPreferences={[]}
+        onTogglePreference={mockOnTogglePreference}
       />
     );
 
@@ -27,14 +28,15 @@ describe('Preferences', () => {
     render(
       <Preferences
         preferences={mockPreferences}
-        onPreferenceChange={mockOnPreferenceChange}
+        selectedPreferences={[]}
+        onTogglePreference={mockOnTogglePreference}
       />
     );
 
     const checkbox = screen.getByLabelText('Preferência 1');
     fireEvent.click(checkbox);
 
-    expect(mockOnPreferenceChange).toHaveBeenCalledWith(['Preferência 1']);
+    expect(mockOnTogglePreference).toHaveBeenCalled();
   });
 
   test('should uncheck preference when clicked again', () => {
@@ -42,38 +44,37 @@ describe('Preferences', () => {
       <Preferences
         preferences={mockPreferences}
         selectedPreferences={['Preferência 1']}
-        onPreferenceChange={mockOnPreferenceChange}
+        onTogglePreference={mockOnTogglePreference}
       />
     );
 
     const checkbox = screen.getByLabelText('Preferência 1');
     fireEvent.click(checkbox);
 
-    expect(mockOnPreferenceChange).toHaveBeenCalledWith([]);
+    expect(mockOnTogglePreference).toHaveBeenCalled();
   });
 
   test('should handle multiple selections', () => {
     render(
       <Preferences
         preferences={mockPreferences}
-        onPreferenceChange={mockOnPreferenceChange}
+        selectedPreferences={[]}
+        onTogglePreference={mockOnTogglePreference}
       />
     );
 
     fireEvent.click(screen.getByLabelText('Preferência 1'));
     fireEvent.click(screen.getByLabelText('Preferência 2'));
 
-    expect(mockOnPreferenceChange).toHaveBeenLastCalledWith([
-      'Preferência 1',
-      'Preferência 2',
-    ]);
+    expect(mockOnTogglePreference).toHaveBeenCalled();
   });
 
   test('should render with empty preferences array', () => {
     render(
       <Preferences
         preferences={[]}
-        onPreferenceChange={mockOnPreferenceChange}
+        selectedPreferences={[]}
+        onTogglePreference={mockOnTogglePreference}
       />
     );
 

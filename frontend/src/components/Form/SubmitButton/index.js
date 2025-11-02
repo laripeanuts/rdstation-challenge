@@ -1,3 +1,3 @@
-import SubmitButton from './SubmitButton';
+import SubmitButton from './SubmitButton.jsx';
 
-export { SubmitButton }
+export { SubmitButton };

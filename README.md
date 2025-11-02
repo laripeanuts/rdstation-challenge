@@ -106,11 +106,12 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 
 ## Critérios extras propostos - UI/UX
 
-- [ ] Melhorias de layout e tela no geral
+- [x] Melhorias de layout e tela no geral
+- [x] Mobile first com tailwind
 - [x] Migrar para tailwind 4
 - [x] Instalar shadcn para componentes
 - [x] Aplicar RD Station fontes (DM Sans e RedHatDisplay)
-- [ ] Criar um switch para escolha de tema, usando contextAPI para distribuir o estado que deve ser mantido no local storage
+- [x] Criar um switch para escolha de tema, usando contextAPI para distribuir o estado que deve ser mantido no local storage
 
 ## Autor
 
