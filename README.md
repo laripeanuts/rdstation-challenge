@@ -2,138 +2,174 @@
 
 Este projeto é parte do teste técnico para a vaga de desenvolvedor front-end na RD Station. O objetivo principal é implementar a lógica de recomendação de produtos RD Station em uma aplicação web existente.
 
-## Missão
-
-Sua missão é desenvolver a funcionalidade central de recomendação de produtos dentro de uma aplicação React.js pré-existente. Você deverá implementar a lógica que permite aos usuários selecionar suas preferências e funcionalidades desejadas, e então receber recomendações de produtos correspondentes.
-
-## Contexto
-
-Este projeto é parte de uma etapa técnica do processo seletivo para a vaga de desenvolvedor front-end na RD Station. A estrutura básica da aplicação já está construída com React.js para o front-end e utiliza json-server para simular um servidor RESTful com dados de produtos.
-
-Seu foco deve ser na implementação da lógica de recomendação e na integração desta funcionalidade com a interface do usuário existente. A aplicação já possui um layout básico utilizando Tailwind CSS.
-
-## Tecnologias Utilizadas
-
-Este projeto utiliza as seguintes tecnologias principais:
-
-- React.js: Para o desenvolvimento do front-end
-- json-server: Para simular um servidor RESTful com dados de produtos
-- Tailwind CSS: Para estilização e layout responsivo
-
 ## 🎬 Demonstração
-
-### Preview da Aplicação
 
 ![GIF da aplicação em funcionamento](./.github/demo/screen.gif)
 
-### Screenshot
+### Tema claro / Tema escuro
 
-#### Tema claro
+![Screenshot tema claro](./.github/demo/screen-theme-light.png) ![Screenshot tema escuro](./.github/demo/screen-theme-dark.png)
 
-![Screenshot da interface com tema claro](./.github/demo/screen-theme-light.png)
+## 🚀 Como Executar o Projeto
 
-#### Tema escuro
+### Pré-requisitos
 
-![Screenshot da interface com tema escuro](./.github/demo/screen-theme-dark.png)
+- Node.js versão 18.3 ou superior
+- Yarn instalado
 
-## 🚀 Principais Destaques da Solução
+### Instalação
 
-### Arquitetura e Design
+1. Clone o repositório:
 
-- **Arquitetura modular**: Serviço de recomendação refatorado com separação de responsabilidades (scoring, selection, validation)
-- **Pattern Strategy**: Implementação de estratégias injetáveis para pontuação e seleção de produtos
-- **Extensibilidade**: Sistema preparado para adicionar novas estratégias sem modificar código existente
-- **Testabilidade**: 50+ testes unitários com cobertura acima de 80%
+```bash
+git clone <URL_DO_REPOSITORIO>
+cd rdstation
+```
 
-### Funcionalidades
+2. Instale as dependências:
 
-- **Recomendação inteligente**: Sistema de pontuação baseado em preferências e features do usuário
-- **Múltiplos modos**: Suporte a SingleProduct e MultipleProducts com tie-breaking apropriado
-- **Validação robusta**: Validação de formulário e dados de entrada
-- **Estratégias customizáveis**: Sistema de pesos configuráveis para preferências e features
+```bash
+yarn install
+```
 
-### Experiência do Usuário
+3. Execute o script de instalação:
 
-- **Interface moderna**: Design responsivo mobile-first com Tailwind CSS 4
-- **Tema claro/escuro**: Toggle de tema com persistência no localStorage via Context API
-- **Componentes reutilizáveis**: Biblioteca de componentes com Shadcn/ui
-- **Acessibilidade**: Componentes seguindo boas práticas de acessibilidade
+```bash
+./install.sh
+```
 
-### Qualidade de Código
+### Variáveis de Ambiente
 
-- **Clean Code**: Código limpo, legível e bem documentado (princípio: "fácil de entender, não fácil de escrever")
-- **SOLID principles**: Aplicação dos princípios SOLID na arquitetura
-- **Hooks customizados**: Separação de lógica em hooks reutilizáveis (useForm, useProducts, useRecommendations)
-- **Type safety**: Documentação JSDoc para melhor autocompletar e validação
+O projeto utiliza variáveis de ambiente para configuração da API. Crie um arquivo `.env` na pasta `frontend/`:
 
-### Performance e Manutenibilidade
+```bash
+cd frontend
+touch .env
+```
 
-- **Performance otimizada**: Uso de memoização e callbacks otimizados
-- **Estrutura organizada**: Separação clara entre serviços, componentes, hooks e estratégias
-- **Documentação completa**: README
+Adicione a seguinte variável (opcional, valor padrão já configurado):
 
-## Requisitos Técnicos
+```env
+REACT_APP_API_URL=http://localhost:3001
+```
 
-### Familiaridade com Tailwind CSS
+**Nota:** Se não configurar, o sistema utilizará `http://localhost:3001` como padrão.
 
-O layout da aplicação foi desenvolvido utilizando Tailwind CSS. Familiaridade básica com este framework de CSS utilitário será útil para entender e potencialmente modificar o layout existente.
+### Executando o Projeto
 
-### Versão do Node.js
+#### Opção 1: Frontend e Backend Simultaneamente (Recomendado)
 
-Este projeto requer Node.js versão 18.3 ou superior. Se você não tem essa versão instalada, siga as instruções abaixo para instalá-la usando `n` ou `nvm`.
+```bash
+yarn dev
+```
 
-#### Usando `n` (Node Version Manager):
+#### Opção 2: Separadamente
 
-1. Instale `n` globalmente (caso ainda não tenha): npm install -g n
+```bash
+# Terminal 1 - Backend
+yarn start:backend
 
-2. Instale e use a versão 18.3 do Node.js: n 18.3
+# Terminal 2 - Frontend
+yarn start:frontend
+```
 
-#### Usando `nvm` (Node Version Manager):
+A aplicação estará disponível em:
 
-1. Instale `nvm` (caso ainda não tenha) seguindo as instruções em: https://github.com/nvm-sh/nvm
-
-2. Instale e use a versão 18.3 do Node.js: nvm install 18.3 & nvm use 18.3
-
-Após instalar a versão correta do Node.js, você pode prosseguir com a instalação das dependências do projeto e iniciar o desenvolvimento.
-
-## Foco do Desenvolvimento
-
-Para completar este teste, você deve concentrar-se principalmente em três arquivos específicos:
-
-1. `App.js`: Neste componente, você encontrará o comentário "Dadas atualizações no formulário, necessário atualizar a lista de recomendações". Implemente a lógica necessária para atualizar a lista de recomendações com base nas entradas do usuário.
-
-2. `Form.js`: Este componente contém o comentário "Defina aqui a lógica para atualizar as recomendações e passar para a lista de recomendações". Desenvolva a lógica para processar as entradas do usuário e gerar as recomendações apropriadas.
-
-3. `recommendation.service.js`: Neste arquivo de serviço, você verá o comentário "Crie aqui a lógica para retornar os produtos recomendados." Implemente a lógica de negócios para determinar quais produtos devem ser recomendados com base nos critérios fornecidos.
-
-## Observações Adicionais
-
-- Sinta-se à vontade para implementar melhorias na cobertura de testes e no layout da aplicação, caso tenha tempo adicional.
-- O código existente serve como base para sua implementação. Concentre-se em desenvolver a funcionalidade de recomendação de produtos conforme especificado nos requisitos do projeto e nos arquivos mencionados acima.
-
-## Como Executar
-
-1. Clone o repositório: `git clone <URL_DO_REPOSITORIO>`
-2. Instale as dependências: `yarn install`
-3. Para instalar o projeto, execute o script `./install.sh`
-4. Inicie a aplicação: `yarn start`
+- **Frontend:** <http://localhost:3000>
+- **Backend API:** <http://localhost:3001>
 
 ### Scripts Disponíveis
 
-- `start`: Inicia a aplicação React em modo de desenvolvimento.
-- `start:frontend`: Inicia apenas a parte frontend da aplicação em modo de desenvolvimento.
-- `start:backend`: Inicia apenas a parte backend da aplicação em modo de desenvolvimento.
-- `dev`: Inicia simultaneamente a parte frontend e backend da aplicação em modo de desenvolvimento.
+| Script                | Descrição                                 |
+| --------------------- | ----------------------------------------- |
+| `yarn dev`            | Inicia frontend e backend simultaneamente |
+| `yarn start:frontend` | Inicia apenas o frontend (porta 3000)     |
+| `yarn start:backend`  | Inicia apenas o backend (porta 3001)      |
+| `yarn test`           | Executa os testes unitários               |
+| `yarn test:coverage`  | Executa testes com cobertura              |
 
-## Requisitos
+## 🧠 Soluções de Lógica Implementadas
+
+### Arquitetura Strategy Pattern
+
+A lógica de recomendação foi implementada seguindo o padrão **Strategy**, garantindo separação de responsabilidades e alta extensibilidade.
+
+**Fluxo de Recomendação:**
+
+1. **Combinação de Seleções**: Preferências e features do usuário são combinadas
+2. **Pontuação**: Cada produto recebe um score baseado em matches (uso de `Set` para O(1))
+3. **Filtragem**: Produtos com score > 0 são ordenados por pontuação
+4. **Seleção**: Estratégia de seleção é aplicada (SingleProduct/MultipleProducts)
+
+### Estratégias Implementadas
+
+**Scoring (Pontuação):**
+
+- **Padrão**: +1 ponto para cada match (preferência ou feature)
+- **Ponderada**: Pesos diferenciados para preferências (peso 2) vs features (peso 1)
+- **Extensível**: Factory function permite criar estratégias customizadas
+
+**Selection (Seleção):**
+
+- **MultipleProducts**: Retorna todos os produtos pontuados ordenados
+- **SingleProduct**: Retorna o melhor produto, com tie-breaking (último em caso de empate)
+- **TopN**: Estratégia extensível para retornar N produtos
+
+### Módulos Principais
+
+| Arquivo                            | Responsabilidade                    |
+| ---------------------------------- | ----------------------------------- |
+| `recommendation.service.js`        | Orquestra o fluxo de recomendação   |
+| `scoringStrategies.js`             | Calcula pontuações de produtos      |
+| `selectionStrategies.js`           | Define quais produtos retornar      |
+| `recommendationForm.validators.js` | Valida dados de entrada             |
+| `useRecommendations.js`            | Hook para gerenciar recomendações   |
+| `useProducts.js`                   | Hook para gerenciar produtos da API |
+
+## 🏗️ Princípios SOLID Aplicados
+
+| Princípio | Aplicação                                                                          |
+| --------- | ---------------------------------------------------------------------------------- |
+| **SRP**   | Cada módulo tem uma única responsabilidade (scoring, selection, validation, state) |
+| **OCP**   | Extensível via factory functions e injeção de dependências                         |
+| **LSP**   | Estratégias intercambiáveis com contratos consistentes                             |
+| **ISP**   | Interfaces específicas, sem dependências desnecessárias                            |
+| **DIP**   | Dependência de abstrações (estratégias injetáveis)                                 |
+
+**Benefícios:**
+
+- ✅ Testabilidade: Módulos testáveis isoladamente
+- ✅ Manutenibilidade: Mudanças localizadas não afetam outros módulos
+- ✅ Extensibilidade: Novas funcionalidades sem modificar código existente
+
+## 🎯 Funcionalidades
+
+- ✅ Sistema de recomendação baseado em preferências e features
+- ✅ Suporte a SingleProduct e MultipleProducts com tie-breaking
+- ✅ Validação de formulário robusta
+- ✅ Estratégias customizáveis (pesos, top N)
+- ✅ Interface moderna com tema claro/escuro
+- ✅ Design responsivo mobile-first
+- ✅ 50+ testes unitários com cobertura > 80%
+
+## 📋 Tecnologias
+
+- **React.js** - Framework frontend
+- **Tailwind CSS 4** - Estilização
+- **json-server** - API mock
+- **Axios** - Cliente HTTP
+- **Shadcn/ui** - Componentes UI
+- **Jest** - Testes unitários
+
+## ✅ Requisitos
 
 - [x] Implementar a lógica de recomendação de produtos com base nas preferências do usuário.
 - [x] Utilizar React.js para o desenvolvimento do front-end.
 - [x] Consumir a API fornecida pelo json-server para obter os dados dos produtos.
 - [x] Seguir as boas práticas de desenvolvimento e organização de código.
-- [ ] Implementar testes unitários para as funcionalidades desenvolvidas.
+- [x] Implementar testes unitários para as funcionalidades desenvolvidas.
 
-## Critérios de Aceite
+## 🎯 Critérios de Aceite
 
 1. [x] O serviço de recomendação de produtos deve ser capaz de receber as preferências e funcionalidades desejadas do usuário através de um formulário.
 2. [x] O serviço deve retornar recomendações de produtos com base nas preferências e funcionalidades selecionadas pelo usuário.
@@ -145,7 +181,7 @@ Para completar este teste, você deve concentrar-se principalmente em três arqu
 
 Certifique-se de que todos os critérios de aceite são atendidos durante o desenvolvimento do projeto.
 
-## Critérios extras propostos - Projeto
+## 🚀 Critérios extras propostos - Projeto
 
 - [x] Corrige alguns pacotes que estavam faltando nas dependências como `concurrency` e `axios`
 - [x] Adicionar estratégias extras para construir recomendações. Ex: Sistema de peso diferentes para funcionalidades e preferências
@@ -156,7 +192,7 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 - [x] Criar um client do AXIOS para centralizar a configuração de requests com variáveis de ambiente
 - [x] Melhorar estrutura de pastas e organização
 
-## Critérios extras propostos - UI/UX
+## 🎨 Critérios extras propostos - UI/UX
 
 - [x] Melhorias de layout e tela no geral
 - [x] Mobile first com tailwind
@@ -165,10 +201,69 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 - [x] Aplicar RD Station fontes (DM Sans e RedHatDisplay)
 - [x] Criar um switch para escolha de tema, usando contextAPI para distribuir o estado que deve ser mantido no local storage
 
-## Autor
+## 🧪 Testes
+
+O projeto conta com uma suíte completa de testes unitários, alcançando cobertura acima de 80% em todos os critérios estabelecidos. Os testes foram desenvolvidos utilizando **Jest** e **React Testing Library**, garantindo qualidade e confiabilidade do código.
+
+### Cobertura de Testes
+
+| Métrica    | Cobertura | Status |
+| ---------- | --------- | ------ |
+| Statements | 93.75%    | ✅     |
+| Branches   | 81.66%    | ✅     |
+| Functions  | 90.12%    | ✅     |
+| Lines      | 93.67%    | ✅     |
+
+### Estrutura de Testes
+
+Os testes estão organizados seguindo a estrutura do projeto, com arquivos de teste próximos aos arquivos de produção:
+
+- **Serviços**: Testes para lógica de negócio (`recommendation.service.test.js`, `product.service.test.js`)
+- **Estratégias**: Testes para estratégias de scoring e seleção (`scoringStrategies.test.js`, `selectionStrategies.test.js`)
+- **Hooks**: Testes para hooks customizados (`useRecommendations.test.js`, `useProducts.test.js`, `useForm.test.js`)
+- **Componentes**: Testes para componentes React (`Form.test.js`, `RecommendationList.test.js`, etc.)
+- **Validadores**: Testes para validação de dados (`recommendationForm.validators.test.js`)
+
+### Cenários Testados
+
+**Serviço de Recomendação:**
+
+- ✅ Retorna produtos corretos para modo SingleProduct
+- ✅ Retorna múltiplos produtos para modo MultipleProducts
+- ✅ Implementa tie-breaking corretamente (último produto em caso de empate)
+- ✅ Retorna array vazio quando não há matches
+- ✅ Aceita estratégias customizadas de scoring e seleção
+
+**Estratégias:**
+
+- ✅ Scoring padrão e ponderado funcionam corretamente
+- ✅ Seleção SingleProduct retorna produto com maior score
+- ✅ Seleção MultipleProducts retorna todos produtos ordenados
+- ✅ Factory functions criam estratégias customizadas
+
+**Validação:**
+
+- ✅ Valida dados do formulário corretamente
+- ✅ Retorna erros apropriados para dados inválidos
+- ✅ Aceita arrays vazios e valida tipo de recomendação
+
+### Executando os Testes
+
+```bash
+# Executar todos os testes
+yarn test
+
+# Executar testes com cobertura
+yarn test:coverage
+
+# Executar testes em modo watch
+yarn test --watch
+```
+
+## 📝 Autor
 
 Desenvolvido por Larissa Rabelo
 
-## Licença
+## 📄 Licença
 
 Este projeto está licenciado sob a [Licença MIT](LICENSE).
