@@ -59,6 +59,245 @@ const mockProducts = [
       'Integração de funcionalidades preditivas nos produtos RD Station',
     ],
   },
+  {
+    id: 5,
+    name: 'RD Sales Pro',
+    category: 'Vendas',
+    preferences: [
+      'Personalização de funis de vendas',
+      'Relatórios avançados de desempenho de vendas',
+    ],
+    features: [
+      'Gestão de leads e oportunidades',
+      'Rastreamento de interações com clientes',
+    ],
+  },
+  {
+    id: 6,
+    name: 'RD Marketing Plus',
+    category: 'Marketing',
+    preferences: ['Automação de marketing', 'Segmentação avançada de leads'],
+    features: [
+      'Criação e gestão de campanhas de e-mail',
+      'Análise de ROI de campanhas',
+    ],
+  },
+  {
+    id: 7,
+    name: 'RD Chat Integrator',
+    category: 'Omnichannel',
+    preferences: [
+      'Integração com chatbots',
+      'Histórico unificado de interações',
+    ],
+    features: [
+      'Chat ao vivo e mensagens automatizadas',
+      'Gestão de conversas multicanal',
+    ],
+  },
+  {
+    id: 8,
+    name: 'RD Predictive Insights',
+    category: 'Uso de Inteligência Artificial',
+    preferences: [
+      'Análise preditiva de dados',
+      'Recomendações personalizadas para usuários',
+    ],
+    features: [
+      'Análise de dados para insights estratégicos',
+      'Recomendação de ações com base em padrões',
+    ],
+  },
+  {
+    id: 9,
+    name: 'RD Analytics',
+    category: 'Análise e Dados',
+    preferences: [
+      'Relatórios avançados de desempenho de vendas',
+      'Análise preditiva de dados',
+    ],
+    features: [
+      'Painéis de métricas customizáveis',
+      'Rastreamento de indicadores-chave (KPIs)',
+    ],
+  },
+  {
+    id: 10,
+    name: 'RD Leads Booster',
+    category: 'Marketing',
+    preferences: ['Segmentação avançada de leads', 'Automação de marketing'],
+    features: ['Captura inteligente de leads', 'Envio automatizado de e-mails'],
+  },
+  {
+    id: 11,
+    name: 'RD Smart CRM',
+    category: 'Vendas',
+    preferences: [
+      'Personalização de funis de vendas',
+      'Integração fácil com ferramentas de e-mail',
+    ],
+    features: [
+      'Gestão de pipeline de vendas',
+      'Notificações automáticas de follow-up',
+    ],
+  },
+  {
+    id: 12,
+    name: 'RD Chat Pro',
+    category: 'Omnichannel',
+    preferences: [
+      'Respostas automáticas e personalizadas',
+      'Histórico unificado de interações',
+    ],
+    features: [
+      'Gestão de conversas multicanal',
+      'Integração com ferramentas de CRM',
+    ],
+  },
+  {
+    id: 13,
+    name: 'RD Growth Engine',
+    category: 'Marketing',
+    preferences: [
+      'Automação de marketing',
+      'Testes A/B para otimização de campanhas',
+    ],
+    features: [
+      'Criação de campanhas segmentadas',
+      'Análise de engajamento de leads',
+    ],
+  },
+  {
+    id: 14,
+    name: 'RD Sales Insights',
+    category: 'Vendas',
+    preferences: [
+      'Relatórios avançados de desempenho de vendas',
+      'Análise preditiva de dados',
+    ],
+    features: [
+      'Análise de ciclo de vendas',
+      'Recomendação de ações com base em histórico',
+    ],
+  },
+  {
+    id: 15,
+    name: 'RD Smart Assist',
+    category: 'Uso de Inteligência Artificial',
+    preferences: [
+      'Integração com assistentes virtuais',
+      'Recomendações personalizadas para usuários',
+    ],
+    features: ['Chat inteligente com IA', 'Sugestões de otimização de funis'],
+  },
+  {
+    id: 16,
+    name: 'RD Connect',
+    category: 'Omnichannel',
+    preferences: [
+      'Integração com chatbots',
+      'Respostas automáticas e personalizadas',
+    ],
+    features: [
+      'Central de mensagens unificada',
+      'Automação de atendimento ao cliente',
+    ],
+  },
+  {
+    id: 17,
+    name: 'RD AI Coach',
+    category: 'Uso de Inteligência Artificial',
+    preferences: [
+      'Análise preditiva de dados',
+      'Recomendações personalizadas para usuários',
+    ],
+    features: [
+      'Acompanhamento automatizado de performance',
+      'Insights de melhoria contínua',
+    ],
+  },
+  {
+    id: 18,
+    name: 'RD Campaign Manager',
+    category: 'Marketing',
+    preferences: ['Automação de marketing', 'Segmentação avançada de leads'],
+    features: [
+      'Gestão centralizada de campanhas',
+      'Relatórios de performance em tempo real',
+    ],
+  },
+  {
+    id: 19,
+    name: 'RD Team CRM',
+    category: 'Vendas',
+    preferences: [
+      'Integração fácil com ferramentas de e-mail',
+      'Personalização de funis de vendas',
+    ],
+    features: ['Gestão colaborativa de leads', 'Automação de follow-ups'],
+  },
+  {
+    id: 20,
+    name: 'RD Engage',
+    category: 'Marketing',
+    preferences: [
+      'Testes A/B para otimização de campanhas',
+      'Automação de marketing',
+    ],
+    features: [
+      'Criação de landing pages otimizadas',
+      'Rastreamento de engajamento de leads',
+    ],
+  },
+  {
+    id: 21,
+    name: 'RD Omni AI',
+    category: 'Omnichannel',
+    preferences: ['Integração com chatbots', 'Análise preditiva de dados'],
+    features: [
+      'Recomendações inteligentes de resposta',
+      'Análise de sentimento em tempo real',
+    ],
+  },
+  {
+    id: 22,
+    name: 'RD Data Vision',
+    category: 'Análise e Dados',
+    preferences: [
+      'Relatórios avançados de desempenho de vendas',
+      'Análise preditiva de dados',
+    ],
+    features: [
+      'Visualização de métricas interativas',
+      'Geração automática de dashboards',
+    ],
+  },
+  {
+    id: 23,
+    name: 'RD AI Analytics',
+    category: 'Uso de Inteligência Artificial',
+    preferences: [
+      'Análise preditiva de dados',
+      'Recomendações personalizadas para usuários',
+    ],
+    features: [
+      'Modelagem preditiva automatizada',
+      'Geração de relatórios com insights inteligentes',
+    ],
+  },
+  {
+    id: 24,
+    name: 'RD Omni Pro',
+    category: 'Omnichannel',
+    preferences: [
+      'Histórico unificado de interações',
+      'Respostas automáticas e personalizadas',
+    ],
+    features: [
+      'Atendimento multicanal em tempo real',
+      'Integração com plataformas externas',
+    ],
+  },
 ];
 
 export default mockProducts;
