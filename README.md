@@ -93,7 +93,7 @@ Para completar este teste, você deve concentrar-se principalmente em três arqu
 
 Certifique-se de que todos os critérios de aceite são atendidos durante o desenvolvimento do projeto.
 
-## Critérios extras propostos
+## Critérios extras propostos - Projeto
 
 - [x] Corrige alguns pacotes que estavam faltando nas dependências como `concurrency` e `axios`
 - [x] Adicionar estratégias extras para construir recomendações. Ex: Sistema de peso diferentes para funcionalidades e preferências
@@ -103,9 +103,14 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 - [x] Analisar e garantir uma boa performance da solução
 - [x] Criar um client do AXIOS para centralizar a configuração de requests com variáveis de ambiente
 - [x] Melhorar estrutura de pastas e organização
-- [ ] Melhorias de layout e tela
-  - [x] Migrar para tailwind 4
-  - [ ] Criar um switch para escolha de tema, usando contextAPI para distribuir o estado que deve ser mantido no local storage
+
+## Critérios extras propostos - UI/UX
+
+- [ ] Melhorias de layout e tela no geral
+- [x] Migrar para tailwind 4
+- [x] Instalar shadcn para componentes
+- [x] Aplicar RD Station fontes (DM Sans e RedHatDisplay)
+- [ ] Criar um switch para escolha de tema, usando contextAPI para distribuir o estado que deve ser mantido no local storage
 
 ## Autor
 
