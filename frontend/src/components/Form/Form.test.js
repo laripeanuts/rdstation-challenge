@@ -1,5 +1,6 @@
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { useForm, useProducts, useRecommendations } from '../../hooks';
+import { validateFormData } from '../../validators';
 import Form from './Form';
 
 jest.mock('../../hooks', () => ({
@@ -10,9 +11,6 @@ jest.mock('../../hooks', () => ({
 jest.mock('../../validators', () => ({
   validateFormData: jest.fn(),
 }));
-
-import { useForm, useProducts, useRecommendations } from '../../hooks';
-import { validateFormData } from '../../validators';
 
 describe('Form', () => {
   const mockProducts = [
@@ -69,23 +67,27 @@ describe('Form', () => {
       handleChange: jest.fn(),
     });
 
-    render(<Form onRecommend={mockOnRecommend} />);
+    const { container } = render(<Form onRecommend={mockOnRecommend} />);
 
-    const form = document.querySelector('form');
+    const form = container.querySelector('form');
     fireEvent.submit(form);
 
-    await waitFor(() => {
-      expect(mockGetRecommendations).toHaveBeenCalled();
-      expect(mockOnRecommend).toHaveBeenCalledWith({
-        recommendations: mockRecommendations,
-        selectedPreferences: ['Preferência 1'],
-        selectedFeatures: ['Funcionalidade 1'],
-      });
-    }, { timeout: 2000 });
+    await waitFor(
+      () => {
+        expect(mockGetRecommendations).toHaveBeenCalled();
+      },
+      { timeout: 2000 }
+    );
+
+    expect(mockOnRecommend).toHaveBeenCalledWith({
+      recommendations: mockRecommendations,
+      selectedPreferences: ['Preferência 1'],
+      selectedFeatures: ['Funcionalidade 1'],
+    });
   });
 
   test('should show alert when validation fails', () => {
-    const alertSpy = jest.spyOn(window, 'alert').mockImplementation();
+    const alertSpy = jest.spyOn(globalThis, 'alert').mockImplementation();
 
     validateFormData.mockReturnValue({
       isValid: false,
@@ -101,9 +103,9 @@ describe('Form', () => {
       handleChange: jest.fn(),
     });
 
-    render(<Form onRecommend={mockOnRecommend} />);
+    const { container } = render(<Form onRecommend={mockOnRecommend} />);
 
-    const form = document.querySelector('form');
+    const form = container.querySelector('form');
     fireEvent.submit(form);
 
     expect(alertSpy).toHaveBeenCalledWith('Erro de validação');
@@ -124,14 +126,17 @@ describe('Form', () => {
       handleChange: jest.fn(),
     });
 
-    render(<Form />);
+    const { container } = render(<Form />);
 
-    const form = document.querySelector('form');
+    const form = container.querySelector('form');
     fireEvent.submit(form);
 
-    await waitFor(() => {
-      expect(mockGetRecommendations).toHaveBeenCalled();
-    }, { timeout: 2000 });
+    await waitFor(
+      () => {
+        expect(mockGetRecommendations).toHaveBeenCalled();
+      },
+      { timeout: 2000 }
+    );
   });
 
   test('should update form data when preference is toggled', async () => {
@@ -148,17 +153,14 @@ describe('Form', () => {
 
     render(<Form />);
 
-    const checkboxes = screen.getAllByRole('checkbox');
-    const preferenceCheckbox = checkboxes.find(
-      (cb) => cb.closest('label')?.textContent?.includes('Preferência 1')
-    );
+    const preferenceCheckbox = screen.getByLabelText('Preferência 1');
+    fireEvent.click(preferenceCheckbox);
 
-    if (preferenceCheckbox) {
-      fireEvent.click(preferenceCheckbox);
-      await waitFor(() => {
-        expect(mockHandleChange).toHaveBeenCalledWith('selectedPreferences', ['Preferência 1']);
-      });
-    }
+    await waitFor(() => {
+      expect(mockHandleChange).toHaveBeenCalledWith('selectedPreferences', [
+        'Preferência 1',
+      ]);
+    });
   });
 
   test('should remove preference when toggling already selected preference', async () => {
@@ -175,17 +177,12 @@ describe('Form', () => {
 
     render(<Form />);
 
-    const checkboxes = screen.getAllByRole('checkbox');
-    const preferenceCheckbox = checkboxes.find(
-      (cb) => cb.closest('label')?.textContent?.includes('Preferência 1')
-    );
+    const preferenceCheckbox = screen.getByLabelText('Preferência 1');
+    fireEvent.click(preferenceCheckbox);
 
-    if (preferenceCheckbox) {
-      fireEvent.click(preferenceCheckbox);
-      await waitFor(() => {
-        expect(mockHandleChange).toHaveBeenCalledWith('selectedPreferences', []);
-      });
-    }
+    await waitFor(() => {
+      expect(mockHandleChange).toHaveBeenCalledWith('selectedPreferences', []);
+    });
   });
 
   test('should update form data when feature is toggled', async () => {
@@ -202,17 +199,14 @@ describe('Form', () => {
 
     render(<Form />);
 
-    const checkboxes = screen.getAllByRole('checkbox');
-    const featureCheckbox = checkboxes.find(
-      (cb) => cb.closest('label')?.textContent?.includes('Funcionalidade 1')
-    );
+    const featureCheckbox = screen.getByLabelText('Funcionalidade 1');
+    fireEvent.click(featureCheckbox);
 
-    if (featureCheckbox) {
-      fireEvent.click(featureCheckbox);
-      await waitFor(() => {
-        expect(mockHandleChange).toHaveBeenCalledWith('selectedFeatures', ['Funcionalidade 1']);
-      });
-    }
+    await waitFor(() => {
+      expect(mockHandleChange).toHaveBeenCalledWith('selectedFeatures', [
+        'Funcionalidade 1',
+      ]);
+    });
   });
 
   test('should remove feature when toggling already selected feature', async () => {
@@ -229,17 +223,12 @@ describe('Form', () => {
 
     render(<Form />);
 
-    const checkboxes = screen.getAllByRole('checkbox');
-    const featureCheckbox = checkboxes.find(
-      (cb) => cb.closest('label')?.textContent?.includes('Funcionalidade 1')
-    );
+    const featureCheckbox = screen.getByLabelText('Funcionalidade 1');
+    fireEvent.click(featureCheckbox);
 
-    if (featureCheckbox) {
-      fireEvent.click(featureCheckbox);
-      await waitFor(() => {
-        expect(mockHandleChange).toHaveBeenCalledWith('selectedFeatures', []);
-      });
-    }
+    await waitFor(() => {
+      expect(mockHandleChange).toHaveBeenCalledWith('selectedFeatures', []);
+    });
   });
 
   test('should call onLoadingChange during form submission', async () => {
@@ -255,16 +244,24 @@ describe('Form', () => {
       handleChange: jest.fn(),
     });
 
-    render(<Form onRecommend={mockOnRecommend} onLoadingChange={mockOnLoadingChange} />);
+    const { container } = render(
+      <Form
+        onRecommend={mockOnRecommend}
+        onLoadingChange={mockOnLoadingChange}
+      />
+    );
 
-    const form = document.querySelector('form');
+    const form = container.querySelector('form');
     fireEvent.submit(form);
 
     expect(mockOnLoadingChange).toHaveBeenCalledWith(true);
 
-    await waitFor(() => {
-      expect(mockOnLoadingChange).toHaveBeenCalledWith(false);
-    }, { timeout: 2000 });
+    await waitFor(
+      () => {
+        expect(mockOnLoadingChange).toHaveBeenCalledWith(false);
+      },
+      { timeout: 2000 }
+    );
   });
 
   test('should disable submit button when loading', async () => {
@@ -279,21 +276,26 @@ describe('Form', () => {
       handleChange: jest.fn(),
     });
 
-    render(<Form />);
+    const { container } = render(<Form />);
 
-    const submitButton = screen.getByRole('button', { name: /Obter Recomendação/i });
+    const submitButton = screen.getByRole('button', {
+      name: /Obter Recomendação/i,
+    });
     expect(submitButton).not.toBeDisabled();
 
-    const form = document.querySelector('form');
+    const form = container.querySelector('form');
     fireEvent.submit(form);
 
     await waitFor(() => {
       expect(submitButton).toBeDisabled();
     });
 
-    await waitFor(() => {
-      expect(submitButton).not.toBeDisabled();
-    }, { timeout: 2000 });
+    await waitFor(
+      () => {
+        expect(submitButton).not.toBeDisabled();
+      },
+      { timeout: 2000 }
+    );
   });
 
   test('should enable submit button when not loading', () => {
@@ -308,12 +310,14 @@ describe('Form', () => {
 
     render(<Form />);
 
-    const submitButton = screen.getByRole('button', { name: /Obter Recomendação/i });
+    const submitButton = screen.getByRole('button', {
+      name: /Obter Recomendação/i,
+    });
     expect(submitButton).not.toBeDisabled();
   });
 
   test('should handle multiple validation errors', () => {
-    const alertSpy = jest.spyOn(window, 'alert').mockImplementation();
+    const alertSpy = jest.spyOn(globalThis, 'alert').mockImplementation();
 
     validateFormData.mockReturnValue({
       isValid: false,
@@ -329,9 +333,9 @@ describe('Form', () => {
       handleChange: jest.fn(),
     });
 
-    render(<Form onRecommend={mockOnRecommend} />);
+    const { container } = render(<Form onRecommend={mockOnRecommend} />);
 
-    const form = document.querySelector('form');
+    const form = container.querySelector('form');
     fireEvent.submit(form);
 
     expect(alertSpy).toHaveBeenCalledWith('Erro 1\nErro 2');
@@ -340,4 +344,3 @@ describe('Form', () => {
     alertSpy.mockRestore();
   });
 });
-
