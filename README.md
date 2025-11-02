@@ -51,6 +51,7 @@ Você pode ajustar a URL da API no `.env` (valor padrão já configurado):
 
 ```env
 REACT_APP_API_URL=http://localhost:3001
+REACT_APP_IS_DEVELOPMENT=true
 ```
 
 **Nota:** Se não configurar, o sistema utilizará `http://localhost:3001` como padrão.
