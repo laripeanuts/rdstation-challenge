@@ -1,8 +1,15 @@
-import React from 'react';
+import { Layout } from './components/Layout/Layout';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { HomePage } from './pages/home/Home.page';
 
 function App() {
-  return <HomePage />;
+  return (
+    <ThemeProvider>
+      <Layout>
+        <HomePage />
+      </Layout>
+    </ThemeProvider>
+  );
 }
 
 export default App;

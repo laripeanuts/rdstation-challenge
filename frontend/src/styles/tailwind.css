@@ -4,9 +4,5 @@
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
 
-@theme {
-  --radius: 0.5rem;
-}
-
 /* stylelint-disable-next-line at-rule-no-unknown */
 @config "../../tailwind.config.js";

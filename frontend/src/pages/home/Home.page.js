@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Form from '../../components/Form/Form';
 import RecommendationList from '../../components/RecommendationList/RecommendationList';
 
@@ -10,13 +10,10 @@ export function HomePage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="mb-8 text-3xl font-bold">
-        Recomendador de Produtos RD Station
-      </h1>
-      <div className="grid w-full grid-cols-1 gap-8 p-8 bg-white rounded-lg shadow-md md:w-3/4 lg:w-1/2 md:grid-cols-2">
+    <div className="flex flex-col items-center justify-center flex-1 py-8">
+      <div className="grid w-full grid-cols-1 gap-8 p-8 rounded-lg shadow-md bg-card md:w-3/4 lg:w-1/2 md:grid-cols-2">
         <div className="col-span-2 mb-4">
-          <p className="text-lg">
+          <p className="text-lg text-foreground">
             Bem-vindo ao Recomendador de Produtos RD Station. Aqui você pode
             encontrar uma variedade de produtos da RD Station, cada um projetado
             para atender às necessidades específicas do seu negócio. De CRM a
