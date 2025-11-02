@@ -20,6 +20,58 @@ Este projeto utiliza as seguintes tecnologias principais:
 - json-server: Para simular um servidor RESTful com dados de produtos
 - Tailwind CSS: Para estilização e layout responsivo
 
+## 🎬 Demonstração
+
+### Preview da Aplicação
+
+![GIF da aplicação em funcionamento](./.github/demo/screen.gif)
+
+### Screenshot
+
+#### Tema claro
+
+![Screenshot da interface com tema claro](./.github/demo/screen-theme-light.png)
+
+#### Tema escuro
+
+![Screenshot da interface com tema escuro](./.github/demo/screen-theme-dark.png)
+
+## 🚀 Principais Destaques da Solução
+
+### Arquitetura e Design
+
+- **Arquitetura modular**: Serviço de recomendação refatorado com separação de responsabilidades (scoring, selection, validation)
+- **Pattern Strategy**: Implementação de estratégias injetáveis para pontuação e seleção de produtos
+- **Extensibilidade**: Sistema preparado para adicionar novas estratégias sem modificar código existente
+- **Testabilidade**: 50+ testes unitários com cobertura acima de 80%
+
+### Funcionalidades
+
+- **Recomendação inteligente**: Sistema de pontuação baseado em preferências e features do usuário
+- **Múltiplos modos**: Suporte a SingleProduct e MultipleProducts com tie-breaking apropriado
+- **Validação robusta**: Validação de formulário e dados de entrada
+- **Estratégias customizáveis**: Sistema de pesos configuráveis para preferências e features
+
+### Experiência do Usuário
+
+- **Interface moderna**: Design responsivo mobile-first com Tailwind CSS 4
+- **Tema claro/escuro**: Toggle de tema com persistência no localStorage via Context API
+- **Componentes reutilizáveis**: Biblioteca de componentes com Shadcn/ui
+- **Acessibilidade**: Componentes seguindo boas práticas de acessibilidade
+
+### Qualidade de Código
+
+- **Clean Code**: Código limpo, legível e bem documentado (princípio: "fácil de entender, não fácil de escrever")
+- **SOLID principles**: Aplicação dos princípios SOLID na arquitetura
+- **Hooks customizados**: Separação de lógica em hooks reutilizáveis (useForm, useProducts, useRecommendations)
+- **Type safety**: Documentação JSDoc para melhor autocompletar e validação
+
+### Performance e Manutenibilidade
+
+- **Performance otimizada**: Uso de memoização e callbacks otimizados
+- **Estrutura organizada**: Separação clara entre serviços, componentes, hooks e estratégias
+- **Documentação completa**: README
+
 ## Requisitos Técnicos
 
 ### Familiaridade com Tailwind CSS

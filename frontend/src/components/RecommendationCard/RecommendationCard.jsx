@@ -66,7 +66,7 @@ export function RecommendationCard({
             <Tooltip>
               <TooltipTrigger asChild>
                 <div className="flex flex-col items-center justify-center w-16 h-16 text-center rounded-full cursor-help">
-                  <div className="text-2xl font-bold text-primary-foreground">
+                  <div className="text-2xl font-bold text-foreground">
                     {product.score}
                   </div>
                   <div className="text-xs text-muted-foreground">pontos</div>
