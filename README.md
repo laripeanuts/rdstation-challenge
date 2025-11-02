@@ -196,6 +196,7 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 ## 🚀 Critérios extras propostos - Projeto
 
 - [x] Corrige alguns pacotes que estavam faltando nas dependências como `concurrency` e `axios`
+- [x] Corrige dependência `@babel/plugin-proposal-private-property-in-object`
 - [x] Adicionar estratégias extras para construir recomendações. Ex: Sistema de peso diferentes para funcionalidades e preferências
 - [x] Adicionar seleções extras para construir recomendações. Ex: Pegar apenas `N` recomendações
 - [x] Adicionar validação para o formulário
@@ -206,6 +207,7 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 - [x] Implementar CI/CD com GitHub Actions (lint, testes, build)
 - [x] Adicionar Git Hooks com Husky para validação pré-push
 - [x] Garantir cobertura mínima de 80% via pipeline e hooks
+- [x] Aplica dados mockados automaticamente quando API não está disponível para fins de publicar de forma mais simples para demonstração
 
 ## 🎨 Critérios extras propostos - UI/UX
 
