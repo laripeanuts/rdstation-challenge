@@ -22,8 +22,8 @@ Este projeto é parte do teste técnico para a vaga de desenvolvedor front-end n
 1. Clone o repositório:
 
 ```bash
-git clone <URL_DO_REPOSITORIO>
-cd rdstation
+git clone git@github.com:laripeanuts/rdstation-challenge.git
+cd rdstation-challenge
 ```
 
 2. Instale as dependências:
@@ -40,14 +40,14 @@ yarn install
 
 ### Variáveis de Ambiente
 
-O projeto utiliza variáveis de ambiente para configuração da API. Crie um arquivo `.env` na pasta `frontend/`:
+Para começar, copie o arquivo de exemplo e crie seu `.env` na pasta `frontend/`:
 
 ```bash
 cd frontend
-touch .env
+cp .env.example .env
 ```
 
-Adicione a seguinte variável (opcional, valor padrão já configurado):
+Você pode ajustar a URL da API no `.env` (valor padrão já configurado):
 
 ```env
 REACT_APP_API_URL=http://localhost:3001
@@ -128,19 +128,27 @@ A lógica de recomendação foi implementada seguindo o padrão **Strategy**, ga
 
 ## 🏗️ Princípios SOLID Aplicados
 
-| Princípio | Aplicação                                                                          |
-| --------- | ---------------------------------------------------------------------------------- |
-| **SRP**   | Cada módulo tem uma única responsabilidade (scoring, selection, validation, state) |
-| **OCP**   | Extensível via factory functions e injeção de dependências                         |
-| **LSP**   | Estratégias intercambiáveis com contratos consistentes                             |
-| **ISP**   | Interfaces específicas, sem dependências desnecessárias                            |
-| **DIP**   | Dependência de abstrações (estratégias injetáveis)                                 |
+| Princípio | Aplicação (no código do projeto)                                                                                                                                              |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **SRP**   | Cada módulo tem uma única responsabilidade: `scoringStrategies.js` apenas pontua, `selectionStrategies.js` apenas seleciona, `recommendation.service.js` apenas orquestra.    |
+| **OCP**   | Novas estratégias são adicionadas sem alterar código existente (ex.: `createWeightedScoringStrategy`, `createTopNStrategy`).                                                  |
+| **LSP**   | Qualquer função que respeite a assinatura esperada substitui outra sem quebrar o fluxo: scoring `(product, selections) => number`, selection `(scoredProducts) => Product[]`. |
+| **ISP**   | Dependemos de contratos mínimos (funções puras), evitando "interfaces exageradas" e acoplamentos desnecessários.                                                              |
+| **DIP**   | `recommendationService.getRecommendations` recebe estratégias via `options` e usa defaults; o serviço depende de abstrações, não de implementações concretas.                 |
 
-**Benefícios:**
+### Aplicação prática por princípio
 
-- ✅ Testabilidade: Módulos testáveis isoladamente
-- ✅ Manutenibilidade: Mudanças localizadas não afetam outros módulos
-- ✅ Extensibilidade: Novas funcionalidades sem modificar código existente
+- SRP: `frontend/src/strategies/scoringStrategies.js` não conhece seleção ou UI; `frontend/src/strategies/selectionStrategies.js` não conhece pontuação; `frontend/src/services/recommendation.service.js` apenas combina seleções, calcula scores e delega a seleção.
+- OCP: Para um novo peso de pontuação, crie uma nova função (ex.: `createWeightedScoringStrategy`) e passe como `scoringStrategy` para o serviço; para outra forma de retorno, crie uma seleção (ex.: `createTopNStrategy`) e injete via `selectionStrategies`.
+- LSP: `singleProductStrategy` e `multipleProductsStrategy` são intercambiáveis pois ambas recebem `scoredProducts` e retornam uma lista. O tie‑breaking do single mantém contrato retornando um array com 1 item (o último de maior score).
+- ISP: O serviço só exige as formas de função necessárias; não há dependência em objetos com múltiplas responsabilidades.
+- DIP: As dependências são passadas por parâmetro (`options`) com defaults (`defaultScoringStrategy`, `SELECTION_STRATEGIES`), permitindo mock em testes e substituição em runtime sem mudar o serviço.
+
+**Benefícios reais no projeto:**
+
+- ✅ Testabilidade: estratégias e serviço testados isoladamente com mocks
+- ✅ Manutenibilidade: ajustes em scoring/seleção não afetam o restante
+- ✅ Extensibilidade: novas regras adicionadas por composição e injeção
 
 ## 🎯 Funcionalidades
 
