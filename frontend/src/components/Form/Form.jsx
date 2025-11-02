@@ -9,8 +9,6 @@ import SubmitButton from "./SubmitButton/SubmitButton.jsx";
 
 function Form({
   onRecommend,
-  onPreferencesChange,
-  onFeaturesChange,
   onLoadingChange,
 }) {
   const { preferences, features, products } = useProducts();
@@ -35,9 +33,6 @@ function Form({
       ? current.filter((p) => p !== preference)
       : [...current, preference];
     handleChange("selectedPreferences", updated);
-    if (onPreferencesChange) {
-      onPreferencesChange(updated);
-    }
   };
 
   const handleToggleFeature = (feature) => {
@@ -46,9 +41,6 @@ function Form({
       ? current.filter((f) => f !== feature)
       : [...current, feature];
     handleChange("selectedFeatures", updated);
-    if (onFeaturesChange) {
-      onFeaturesChange(updated);
-    }
   };
 
   const handleSubmit = async (e) => {
@@ -72,7 +64,11 @@ function Form({
       const dataRecommendations = getRecommendations(formData);
 
       if (onRecommend) {
-        onRecommend(dataRecommendations);
+        onRecommend({
+          recommendations: dataRecommendations,
+          selectedPreferences: formData.selectedPreferences,
+          selectedFeatures: formData.selectedFeatures,
+        });
       }
     } finally {
       setIsLoading(false);

@@ -63,7 +63,7 @@ describe('Form', () => {
     useForm.mockReturnValue({
       formData: {
         selectedPreferences: ['Preferência 1'],
-        selectedFeatures: [],
+        selectedFeatures: ['Funcionalidade 1'],
         selectedRecommendationType: 'SingleProduct',
       },
       handleChange: jest.fn(),
@@ -76,7 +76,11 @@ describe('Form', () => {
 
     await waitFor(() => {
       expect(mockGetRecommendations).toHaveBeenCalled();
-      expect(mockOnRecommend).toHaveBeenCalledWith(mockRecommendations);
+      expect(mockOnRecommend).toHaveBeenCalledWith({
+        recommendations: mockRecommendations,
+        selectedPreferences: ['Preferência 1'],
+        selectedFeatures: ['Funcionalidade 1'],
+      });
     }, { timeout: 2000 });
   });
 
@@ -130,9 +134,8 @@ describe('Form', () => {
     }, { timeout: 2000 });
   });
 
-  test('should call onPreferencesChange when preference is toggled', async () => {
+  test('should update form data when preference is toggled', async () => {
     const mockHandleChange = jest.fn();
-    const mockOnPreferencesChange = jest.fn();
 
     useForm.mockReturnValue({
       formData: {
@@ -143,7 +146,7 @@ describe('Form', () => {
       handleChange: mockHandleChange,
     });
 
-    render(<Form onPreferencesChange={mockOnPreferencesChange} />);
+    render(<Form />);
 
     const checkboxes = screen.getAllByRole('checkbox');
     const preferenceCheckbox = checkboxes.find(
@@ -153,15 +156,13 @@ describe('Form', () => {
     if (preferenceCheckbox) {
       fireEvent.click(preferenceCheckbox);
       await waitFor(() => {
-        expect(mockHandleChange).toHaveBeenCalled();
-        expect(mockOnPreferencesChange).toHaveBeenCalledWith(['Preferência 1']);
+        expect(mockHandleChange).toHaveBeenCalledWith('selectedPreferences', ['Preferência 1']);
       });
     }
   });
 
   test('should remove preference when toggling already selected preference', async () => {
     const mockHandleChange = jest.fn();
-    const mockOnPreferencesChange = jest.fn();
 
     useForm.mockReturnValue({
       formData: {
@@ -172,7 +173,7 @@ describe('Form', () => {
       handleChange: mockHandleChange,
     });
 
-    render(<Form onPreferencesChange={mockOnPreferencesChange} />);
+    render(<Form />);
 
     const checkboxes = screen.getAllByRole('checkbox');
     const preferenceCheckbox = checkboxes.find(
@@ -182,13 +183,12 @@ describe('Form', () => {
     if (preferenceCheckbox) {
       fireEvent.click(preferenceCheckbox);
       await waitFor(() => {
-        expect(mockHandleChange).toHaveBeenCalled();
-        expect(mockOnPreferencesChange).toHaveBeenCalledWith([]);
+        expect(mockHandleChange).toHaveBeenCalledWith('selectedPreferences', []);
       });
     }
   });
 
-  test('should work without onPreferencesChange callback', async () => {
+  test('should update form data when feature is toggled', async () => {
     const mockHandleChange = jest.fn();
 
     useForm.mockReturnValue({
@@ -203,34 +203,6 @@ describe('Form', () => {
     render(<Form />);
 
     const checkboxes = screen.getAllByRole('checkbox');
-    const preferenceCheckbox = checkboxes.find(
-      (cb) => cb.closest('label')?.textContent?.includes('Preferência 1')
-    );
-
-    if (preferenceCheckbox) {
-      fireEvent.click(preferenceCheckbox);
-      await waitFor(() => {
-        expect(mockHandleChange).toHaveBeenCalled();
-      });
-    }
-  });
-
-  test('should call onFeaturesChange when feature is toggled', async () => {
-    const mockHandleChange = jest.fn();
-    const mockOnFeaturesChange = jest.fn();
-
-    useForm.mockReturnValue({
-      formData: {
-        selectedPreferences: [],
-        selectedFeatures: [],
-        selectedRecommendationType: '',
-      },
-      handleChange: mockHandleChange,
-    });
-
-    render(<Form onFeaturesChange={mockOnFeaturesChange} />);
-
-    const checkboxes = screen.getAllByRole('checkbox');
     const featureCheckbox = checkboxes.find(
       (cb) => cb.closest('label')?.textContent?.includes('Funcionalidade 1')
     );
@@ -238,15 +210,13 @@ describe('Form', () => {
     if (featureCheckbox) {
       fireEvent.click(featureCheckbox);
       await waitFor(() => {
-        expect(mockHandleChange).toHaveBeenCalled();
-        expect(mockOnFeaturesChange).toHaveBeenCalledWith(['Funcionalidade 1']);
+        expect(mockHandleChange).toHaveBeenCalledWith('selectedFeatures', ['Funcionalidade 1']);
       });
     }
   });
 
   test('should remove feature when toggling already selected feature', async () => {
     const mockHandleChange = jest.fn();
-    const mockOnFeaturesChange = jest.fn();
 
     useForm.mockReturnValue({
       formData: {
@@ -257,34 +227,6 @@ describe('Form', () => {
       handleChange: mockHandleChange,
     });
 
-    render(<Form onFeaturesChange={mockOnFeaturesChange} />);
-
-    const checkboxes = screen.getAllByRole('checkbox');
-    const featureCheckbox = checkboxes.find(
-      (cb) => cb.closest('label')?.textContent?.includes('Funcionalidade 1')
-    );
-
-    if (featureCheckbox) {
-      fireEvent.click(featureCheckbox);
-      await waitFor(() => {
-        expect(mockHandleChange).toHaveBeenCalled();
-        expect(mockOnFeaturesChange).toHaveBeenCalledWith([]);
-      });
-    }
-  });
-
-  test('should work without onFeaturesChange callback', async () => {
-    const mockHandleChange = jest.fn();
-
-    useForm.mockReturnValue({
-      formData: {
-        selectedPreferences: [],
-        selectedFeatures: [],
-        selectedRecommendationType: '',
-      },
-      handleChange: mockHandleChange,
-    });
-
     render(<Form />);
 
     const checkboxes = screen.getAllByRole('checkbox');
@@ -295,7 +237,7 @@ describe('Form', () => {
     if (featureCheckbox) {
       fireEvent.click(featureCheckbox);
       await waitFor(() => {
-        expect(mockHandleChange).toHaveBeenCalled();
+        expect(mockHandleChange).toHaveBeenCalledWith('selectedFeatures', []);
       });
     }
   });

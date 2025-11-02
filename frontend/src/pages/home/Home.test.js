@@ -1,5 +1,4 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { HomePage } from './Home.page';
 
 jest.mock('../../components/Form/Form', () => ({
@@ -9,7 +8,13 @@ jest.mock('../../components/Form/Form', () => ({
       <div data-testid="mock-form">
         <button
           onClick={() =>
-            onRecommend([{ id: 1, name: 'Test Product', category: 'Test' }])
+            onRecommend({
+              recommendations: [
+                { id: 1, name: 'Test Product', category: 'Test' },
+              ],
+              selectedPreferences: ['Preferência 1'],
+              selectedFeatures: ['Funcionalidade 1'],
+            })
           }
         >
           Get Recommendations
@@ -37,9 +42,7 @@ describe('HomePage', () => {
   test('should render description text', () => {
     render(<HomePage />);
 
-    expect(
-      screen.getByText(/De CRM a Marketing/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/De CRM a Marketing/i)).toBeInTheDocument();
   });
 
   test('should render form component', () => {
