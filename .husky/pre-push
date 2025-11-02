@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 [pre-push] Running lint and tests with coverage (frontend)"
+echo "📊 Coverage threshold: ≥ 80%"
+echo ""
+
+# Run lint
+echo "🧹 Running ESLint..."
+yarn --cwd frontend lint || {
+  echo "❌ Lint failed. Please fix the errors before pushing."
+  exit 1
+}
+
+# Run tests with coverage
+echo ""
+echo "🧪 Running tests with coverage..."
+yarn --cwd frontend test:coverage || {
+  echo "❌ Tests or coverage threshold failed. Coverage must be ≥ 80%."
+  exit 1
+}
+
+echo ""
+echo "✅ All checks passed! Proceeding with push..."
+

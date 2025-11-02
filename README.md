@@ -80,13 +80,16 @@ A aplicação estará disponível em:
 
 ### Scripts Disponíveis
 
-| Script                | Descrição                                 |
-| --------------------- | ----------------------------------------- |
-| `yarn dev`            | Inicia frontend e backend simultaneamente |
-| `yarn start:frontend` | Inicia apenas o frontend (porta 3000)     |
-| `yarn start:backend`  | Inicia apenas o backend (porta 3001)      |
-| `yarn test`           | Executa os testes unitários               |
-| `yarn test:coverage`  | Executa testes com cobertura              |
+| Script                        | Descrição                                 |
+| ----------------------------- | ----------------------------------------- |
+| `yarn dev`                    | Inicia frontend e backend simultaneamente |
+| `yarn start:frontend`         | Inicia apenas o frontend (porta 3000)     |
+| `yarn start:backend`          | Inicia apenas o backend (porta 3001)      |
+| `yarn lint:frontend`          | Executa ESLint no frontend                |
+| `yarn lint:fix:frontend`      | Executa ESLint e corrige automaticamente  |
+| `yarn test:frontend`          | Executa os testes unitários               |
+| `yarn test:coverage:frontend` | Executa testes com cobertura              |
+| `yarn build:frontend`         | Gera build de produção do frontend        |
 
 ## 🧠 Soluções de Lógica Implementadas
 
@@ -199,6 +202,9 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 - [x] Analisar e garantir uma boa performance da solução
 - [x] Criar um client do AXIOS para centralizar a configuração de requests com variáveis de ambiente
 - [x] Melhorar estrutura de pastas e organização
+- [x] Implementar CI/CD com GitHub Actions (lint, testes, build)
+- [x] Adicionar Git Hooks com Husky para validação pré-push
+- [x] Garantir cobertura mínima de 80% via pipeline e hooks
 
 ## 🎨 Critérios extras propostos - UI/UX
 
@@ -208,6 +214,86 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 - [x] Instalar shadcn para componentes
 - [x] Aplicar RD Station fontes (DM Sans e RedHatDisplay)
 - [x] Criar um switch para escolha de tema, usando contextAPI para distribuir o estado que deve ser mantido no local storage
+
+## 🔄 CI/CD e Qualidade de Código
+
+### Integração Contínua (GitHub Actions)
+
+O projeto utiliza **GitHub Actions** para automatizar verificações de qualidade a cada push ou pull request. O pipeline CI executa:
+
+1. **Instalação de dependências** (com cache do Yarn para otimização)
+2. **Lint** (ESLint) - garante padrões de código
+3. **Testes com cobertura mínima de 80%** - valida funcionalidades e qualidade
+4. **Build de produção** - verifica se o código compila corretamente
+
+O workflow está configurado em `.github/workflows/ci.yml` e roda automaticamente em todas as branches.
+
+**Status do CI:** Os artefatos de cobertura são publicados automaticamente e ficam disponíveis por 30 dias.
+
+### Git Hooks (Husky)
+
+Para garantir qualidade antes mesmo do push, o projeto utiliza **Husky** com um hook `pre-push` que:
+
+- 🧹 Executa lint no código
+- 🧪 Roda todos os testes com verificação de cobertura
+- 🚫 **Bloqueia o push se a cobertura estiver abaixo de 80%**
+
+#### Configurando os Hooks
+
+Após clonar o repositório e instalar as dependências, os hooks são configurados automaticamente via script `prepare`:
+
+```bash
+yarn install  # Instala dependências e configura Husky automaticamente
+```
+
+#### Como Funciona
+
+Quando você tentar fazer `git push`, o Husky executará automaticamente:
+
+```bash
+🔍 [pre-push] Running lint and tests with coverage (frontend)
+📊 Coverage threshold: ≥ 80%
+
+🧹 Running ESLint...
+✅ Lint passed
+
+🧪 Running tests with coverage...
+✅ All tests passed
+✅ Coverage: 93.75% statements, 81.66% branches, 90.12% functions, 93.67% lines
+
+✅ All checks passed! Proceeding with push...
+```
+
+Se alguma verificação falhar, o push será **bloqueado** e você verá uma mensagem de erro indicando o problema.
+
+#### Interpretando Falhas
+
+**Lint falhou:**
+
+```bash
+❌ Lint failed. Please fix the errors before pushing.
+```
+
+Solução: Execute `yarn lint:fix:frontend` para corrigir automaticamente ou corrija manualmente os erros apontados.
+
+**Cobertura abaixo de 80%:**
+
+```bash
+❌ Tests or coverage threshold failed. Coverage must be ≥ 80%.
+```
+
+Solução: Adicione testes para as funcionalidades não cobertas até atingir o mínimo de 80%.
+
+### Cobertura Mínima Exigida
+
+O projeto exige **cobertura mínima de 80%** em todas as métricas:
+
+- ✅ Statements: ≥ 80%
+- ✅ Branches: ≥ 80%
+- ✅ Functions: ≥ 80%
+- ✅ Lines: ≥ 80%
+
+Esta configuração está definida em `frontend/package.json` no campo `jest.coverageThreshold`.
 
 ## 🧪 Testes
 
