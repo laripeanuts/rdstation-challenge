@@ -267,23 +267,9 @@ describe('Form', () => {
     }, { timeout: 2000 });
   });
 
-  test('should disable submit button when no selection or no recommendation type', () => {
-    useForm.mockReturnValue({
-      formData: {
-        selectedPreferences: [],
-        selectedFeatures: [],
-        selectedRecommendationType: '',
-      },
-      handleChange: jest.fn(),
-    });
+  test('should disable submit button when loading', async () => {
+    mockGetRecommendations.mockReturnValue([{ id: 1, name: 'Product' }]);
 
-    render(<Form />);
-
-    const submitButton = screen.getByRole('button', { name: /Obter Recomendação/i });
-    expect(submitButton).toBeDisabled();
-  });
-
-  test('should enable submit button when selection and recommendation type are provided', () => {
     useForm.mockReturnValue({
       formData: {
         selectedPreferences: ['Preferência 1'],
@@ -297,14 +283,25 @@ describe('Form', () => {
 
     const submitButton = screen.getByRole('button', { name: /Obter Recomendação/i });
     expect(submitButton).not.toBeDisabled();
+
+    const form = document.querySelector('form');
+    fireEvent.submit(form);
+
+    await waitFor(() => {
+      expect(submitButton).toBeDisabled();
+    });
+
+    await waitFor(() => {
+      expect(submitButton).not.toBeDisabled();
+    }, { timeout: 2000 });
   });
 
-  test('should enable submit button when only features are selected', () => {
+  test('should enable submit button when not loading', () => {
     useForm.mockReturnValue({
       formData: {
         selectedPreferences: [],
-        selectedFeatures: ['Funcionalidade 1'],
-        selectedRecommendationType: 'SingleProduct',
+        selectedFeatures: [],
+        selectedRecommendationType: '',
       },
       handleChange: jest.fn(),
     });

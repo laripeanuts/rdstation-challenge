@@ -6,7 +6,7 @@ function SubmitButton({ isLoading = false, disabled = false }) {
     <Button
       type="submit"
       disabled={disabled}
-      className="w-full h-12 text-base font-semibold bg-rd-primary hover:bg-rd-primary/90"
+      className="w-full h-12 text-base font-semibold"
       size="lg"
     >
       {isLoading ? (

@@ -7,10 +7,7 @@ import { validateFormData } from "../../validators";
 import { Features, Preferences, RecommendationType } from "./Fields";
 import SubmitButton from "./SubmitButton/SubmitButton.jsx";
 
-function Form({
-  onRecommend,
-  onLoadingChange,
-}) {
+function Form({ onRecommend, onLoadingChange }) {
   const { preferences, features, products } = useProducts();
   const { getRecommendations } = useRecommendations(products);
   const { formData, handleChange } = useForm({
@@ -97,12 +94,7 @@ function Form({
         onChange={(value) => handleChange("selectedRecommendationType", value)}
       />
 
-      <SubmitButton
-        isLoading={isLoading}
-        disabled={
-          isLoading || !hasAnySelection || !formData.selectedRecommendationType
-        }
-      />
+      <SubmitButton isLoading={isLoading} disabled={isLoading} />
     </form>
   );
 }
