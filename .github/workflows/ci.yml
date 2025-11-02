@@ -25,10 +25,12 @@ jobs:
       - name: Install dependencies
         run: yarn --cwd frontend install --frozen-lockfile
 
-      - name: Clear caches
+      - name: Clear caches and ensure clean state
         run: |
           yarn --cwd frontend test --clearCache || true
           rm -rf frontend/node_modules/.cache || true
+          rm -rf frontend/.jest-cache || true
+          find frontend -name "*.tsbuildinfo" -delete || true
 
       - name: Run ESLint
         run: yarn --cwd frontend lint
