@@ -95,6 +95,7 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 
 ## Critérios extras propostos
 
+- [x] Corrige alguns pacotes que estavam faltando nas dependências como `concurrency` e `axios`
 - [x] Adicionar estratégias extras para construir recomendações. Ex: Sistema de peso diferentes para funcionalidades e preferências
 - [x] Adicionar seleções extras para construir recomendações. Ex: Pegar apenas `N` recomendações
 - [x] Adicionar validação para o formulário
@@ -102,7 +103,9 @@ Certifique-se de que todos os critérios de aceite são atendidos durante o dese
 - [x] Analisar e garantir uma boa performance da solução
 - [x] Criar um client do AXIOS para centralizar a configuração de requests com variáveis de ambiente
 - [x] Melhorar estrutura de pastas e organização
-- [ ] Criar um switch para escolha de tema, usando contextAPI para distribuir o estado que deve ser mantido no local storage
+- [ ] Melhorias de layout e tela
+  - [x] Migrar para tailwind 4
+  - [ ] Criar um switch para escolha de tema, usando contextAPI para distribuir o estado que deve ser mantido no local storage
 
 ## Autor
 
