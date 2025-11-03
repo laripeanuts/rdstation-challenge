@@ -1,7 +1,7 @@
 <!-- TOC start -->
 
 - [Teste Técnico - Recomendador de Produtos RD Station](#teste-técnico---recomendador-de-produtos-rd-station)
-  - [🎬 Demonstração](#-demonstração)
+  - [🎬 Demonstração Acesse DEMO](#-demonstração-acesse-demo)
     - [Tema claro / Tema escuro](#tema-claro--tema-escuro)
   - [🚀 Como Executar o Projeto](#-como-executar-o-projeto)
     - [Pré-requisitos](#pré-requisitos)
@@ -45,7 +45,7 @@
 
 Este projeto é parte do teste técnico para a vaga de desenvolvedor front-end na RD Station. O objetivo principal é implementar a lógica de recomendação de produtos RD Station em uma aplicação web existente.
 
-## 🎬 Demonstração
+## 🎬 Demonstração [Acesse DEMO](https://rdstation-challenge.vercel.app/)
 
 ![GIF da aplicação em funcionamento](./.github/demo/screen.gif)
 
