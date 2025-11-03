@@ -1,3 +1,46 @@
+<!-- TOC start -->
+
+- [Teste Técnico - Recomendador de Produtos RD Station](#teste-técnico---recomendador-de-produtos-rd-station)
+  - [🎬 Demonstração](#-demonstração)
+    - [Tema claro / Tema escuro](#tema-claro--tema-escuro)
+  - [🚀 Como Executar o Projeto](#-como-executar-o-projeto)
+    - [Pré-requisitos](#pré-requisitos)
+    - [Instalação](#instalação)
+    - [Variáveis de Ambiente](#variáveis-de-ambiente)
+    - [Executando o Projeto](#executando-o-projeto)
+      - [Opção 1: Frontend e Backend Simultaneamente (Recomendado)](#opção-1-frontend-e-backend-simultaneamente-recomendado)
+      - [Opção 2: Separadamente](#opção-2-separadamente)
+    - [Scripts Disponíveis](#scripts-disponíveis)
+  - [🚀 Publicação na Vercel (Deploy)](#-publicação-na-vercel-deploy)
+  - [🧠 Soluções de Lógica Implementadas](#-soluções-de-lógica-implementadas)
+    - [Arquitetura Strategy Pattern](#arquitetura-strategy-pattern)
+    - [Estratégias Implementadas](#estratégias-implementadas)
+    - [Módulos Principais](#módulos-principais)
+  - [🏗️ Princípios SOLID Aplicados](#️-princípios-solid-aplicados)
+    - [Aplicação prática por princípio](#aplicação-prática-por-princípio)
+  - [🎯 Funcionalidades](#-funcionalidades)
+  - [📋 Tecnologias](#-tecnologias)
+  - [✅ Requisitos](#-requisitos)
+  - [🎯 Critérios de Aceite](#-critérios-de-aceite)
+  - [🚀 Critérios extras propostos - Projeto](#-critérios-extras-propostos---projeto)
+  - [🎨 Critérios extras propostos - UI/UX](#-critérios-extras-propostos---uiux)
+  - [🔄 CI/CD e Qualidade de Código](#-cicd-e-qualidade-de-código)
+    - [Integração Contínua (GitHub Actions)](#integração-contínua-github-actions)
+    - [Git Hooks (Husky)](#git-hooks-husky)
+      - [Configurando os Hooks](#configurando-os-hooks)
+      - [Como Funciona](#como-funciona)
+      - [Interpretando Falhas](#interpretando-falhas)
+    - [Cobertura Mínima Exigida](#cobertura-mínima-exigida)
+  - [🧪 Testes](#-testes)
+    - [Cobertura de Testes](#cobertura-de-testes)
+    - [Estrutura de Testes](#estrutura-de-testes)
+    - [Cenários Testados](#cenários-testados)
+    - [Executando os Testes](#executando-os-testes)
+  - [📝 Autor](#-autor)
+  - [📄 Licença](#-licença)
+
+<!-- TOC end -->
+
 # Teste Técnico - Recomendador de Produtos RD Station
 
 Este projeto é parte do teste técnico para a vaga de desenvolvedor front-end na RD Station. O objetivo principal é implementar a lógica de recomendação de produtos RD Station em uma aplicação web existente.
@@ -91,6 +134,18 @@ A aplicação estará disponível em:
 | `yarn test:frontend`          | Executa os testes unitários               |
 | `yarn test:coverage:frontend` | Executa testes com cobertura              |
 | `yarn build:frontend`         | Gera build de produção do frontend        |
+
+## 🚀 Publicação na Vercel (Deploy)
+
+O projeto está publicado gratuitamente na plataforma Vercel, o que facilita o acesso e a demonstração. A Vercel permite hospedar aplicações React com integração contínua usando seu repositório do GitHub.
+
+A cada atualização no branch principal, a Vercel automaticamente gera um novo deploy.
+
+Isso garante:
+
+- Deploy rápido, sem configuração extra de servidores
+- Link público sempre atualizado para avaliação e testes
+- Fácil compartilhamento da aplicação para pessoas envolvidas no processo
 
 ## 🧠 Soluções de Lógica Implementadas
 
